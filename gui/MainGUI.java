@@ -3,6 +3,8 @@ package gui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import gui.eventhandlers.*;
+import gui.menubar.*;
 
 public class MainGUI {
 
