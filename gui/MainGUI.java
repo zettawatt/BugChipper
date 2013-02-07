@@ -8,6 +8,8 @@ import gui.menubar.*;
 
 public class MainGUI {
 
+    private Mediator mdtr = new Mediator();
+
     public void guiInit() {
     /**
      * Create frame for application window
@@ -29,8 +31,8 @@ public class MainGUI {
     /**
      * Add the menubar
      */
-    MainMenuBar mb = new MainMenuBar();
-    frame.setJMenuBar(mb.createMenuBar());
+    MainMenuBar mb = new MainMenuBar(mdtr);
+    frame.setJMenuBar(mb);
 
     //frame.setContentPane(contentPane, BorderLayout.SOUTH);
     

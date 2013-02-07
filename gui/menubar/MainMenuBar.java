@@ -6,16 +6,15 @@ import java.awt.event.*;
 import gui.eventhandlers.*;
 import gui.*;
 
-public class MainMenuBar {
+public class MainMenuBar extends JMenuBar {
+    Mediator mdtr;
 
-    private Mediator mdtr = new Mediator();
-
-    public JMenuBar createMenuBar() {
+    public MainMenuBar (Mediator inp_mdtr) {
+        mdtr = inp_mdtr;
         
         /**
-         * Initialize Menubar and Menus
+         * Initialize Menus
          */
-        JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
         JMenu editMenu = new JMenu("Edit");
         JMenu helpMenu = new JMenu("Help");
@@ -56,12 +55,9 @@ public class MainMenuBar {
         /**
          * Add the menus to the menubar
          */
-        menuBar.add(fileMenu);
-        menuBar.add(editMenu);
-        menuBar.add(Box.createHorizontalGlue()); // Horizontal filler
-        menuBar.add(helpMenu);
-        
-        return menuBar;
+        this.add(fileMenu);
+        this.add(editMenu);
+        this.add(Box.createHorizontalGlue()); // Horizontal filler
+        this.add(helpMenu);
     }
-
 }
