@@ -23,6 +23,7 @@ public class MainMenuBar {
          * Initialize Menu Items
          */
         QuitMenuItem fileQuit = new QuitMenuItem("Quit", mdtr);
+        OpenProjMenuItem fileOpenProj = new OpenProjMenuItem("Open Project", mdtr);
         AboutMenuItem helpAbout = new AboutMenuItem("About", mdtr);
 
         /**
@@ -31,6 +32,7 @@ public class MainMenuBar {
         buttonHandler bh = new buttonHandler();
 
         fileQuit.addActionListener(bh);
+        fileOpenProj.addActionListener(bh);
         helpAbout.addActionListener(bh);
 
         /**
@@ -38,6 +40,8 @@ public class MainMenuBar {
          */
 
         // File Menu
+        fileMenu.add(fileOpenProj);
+        fileMenu.addSeparator();
         fileMenu.add(fileQuit);
 
         // Help Menu
