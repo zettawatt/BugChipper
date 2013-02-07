@@ -11,6 +11,7 @@ public class Mediator {
     private AboutMenuItem miAbout;
     private QuitMenuItem miQuit;
     private OpenProjMenuItem miOpenProj;
+    private PrefsMenuItem miPrefs;
 
     public void registerQuitMenuItem (QuitMenuItem inp_quitmi) {
         miQuit = inp_quitmi;
@@ -18,6 +19,10 @@ public class Mediator {
 
     public void registerOpenProjMenuItem (OpenProjMenuItem inp_openprojmi) {
         miOpenProj = inp_openprojmi;
+    }
+
+    public void registerPrefsMenuItem (PrefsMenuItem inp_prefsmi) {
+        miPrefs = inp_prefsmi;
     }
 
     public void registerAboutMenuItem (AboutMenuItem inp_aboutmi) {
@@ -33,6 +38,10 @@ public class Mediator {
     }
 
     public void OpenProj() {
+
+    }
+
+    public void Prefs() {
 
     }
 }

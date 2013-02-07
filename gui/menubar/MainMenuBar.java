@@ -17,6 +17,7 @@ public class MainMenuBar {
          */
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
+        JMenu editMenu = new JMenu("Edit");
         JMenu helpMenu = new JMenu("Help");
 
         /**
@@ -24,6 +25,7 @@ public class MainMenuBar {
          */
         QuitMenuItem fileQuit = new QuitMenuItem("Quit", mdtr);
         OpenProjMenuItem fileOpenProj = new OpenProjMenuItem("Open Project", mdtr);
+        PrefsMenuItem editPrefs = new PrefsMenuItem("Preferences...", mdtr);
         AboutMenuItem helpAbout = new AboutMenuItem("About", mdtr);
 
         /**
@@ -32,6 +34,7 @@ public class MainMenuBar {
         buttonHandler bh = new buttonHandler();
 
         fileQuit.addActionListener(bh);
+        editPrefs.addActionListener(bh);
         fileOpenProj.addActionListener(bh);
         helpAbout.addActionListener(bh);
 
@@ -44,6 +47,9 @@ public class MainMenuBar {
         fileMenu.addSeparator();
         fileMenu.add(fileQuit);
 
+        // Edit Menu
+        editMenu.add(editPrefs);
+
         // Help Menu
         helpMenu.add(helpAbout);
 
@@ -51,6 +57,7 @@ public class MainMenuBar {
          * Add the menus to the menubar
          */
         menuBar.add(fileMenu);
+        menuBar.add(editMenu);
         menuBar.add(Box.createHorizontalGlue()); // Horizontal filler
         menuBar.add(helpMenu);
         
