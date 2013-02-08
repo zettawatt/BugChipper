@@ -1,4 +1,4 @@
-package gui;
+package gui.popups;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +12,7 @@ public class AboutDialog extends JDialog {
     private ImageIcon icon;
 
     {
-        icon = createImageIcon("./icons/ant_carry_chip.jpeg", "Bugchipper logo");
+        icon = createImageIcon("../icons/ant_carry_chip.jpeg", "Bugchipper logo");
 
         this.setLayout( new FlowLayout());
         this.setTitle("About BugChipper");

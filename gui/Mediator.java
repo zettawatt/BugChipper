@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import gui.eventhandlers.*;
 import gui.menubar.*;
+import gui.popups.*;
 
 public class Mediator {
     
