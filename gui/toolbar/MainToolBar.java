@@ -19,6 +19,14 @@ public class MainToolBar extends JToolBar {
         AddBugToolBut addBugBut   = new AddBugToolBut("Add Bug", mdtr);
         AddProjToolBut addProjBut = new AddProjToolBut("Add Project", mdtr);
 
+        /**
+         * Add event handlers to toolbar buttons
+         */
+        buttonHandler bh = new buttonHandler();
+
+        addBugBut.addActionListener(bh);
+        addProjBut.addActionListener(bh);
+
         this.setFloatable(true);
         this.add(addBugBut);
         this.add(addProjBut);

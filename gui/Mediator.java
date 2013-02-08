@@ -33,15 +33,15 @@ public class Mediator {
     public void registerAddBugToolBut (AddBugToolBut inp_addbugtb) {tbAddBug = inp_addbugtb;}
 
     public void AddProj() {
-
+        System.out.println("Added Project!");
     }
 
     public void AddBug() {
-
+        System.out.println("Added Bug!");
     }
 
     public void OpenProj() {
-
+        System.out.println("Opened Project!");
     }
 
     public void Exit() {
@@ -53,6 +53,6 @@ public class Mediator {
     }
 
     public void Prefs() {
-
+        System.out.println("Editting Preferences!");
     }
 }
