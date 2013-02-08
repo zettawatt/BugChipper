@@ -8,7 +8,7 @@ import java.awt.*;
  */
 public class AboutDialog extends JDialog {
 
-    private JLabel logo, prog, author, email;
+    private JLabel logo, prog, author, email, catchphrase;
     private ImageIcon icon;
 
     {
@@ -24,10 +24,12 @@ public class AboutDialog extends JDialog {
         prog = new JLabel("BugChipper 1.0");
         author = new JLabel("Written by Chuck McClish");
         email = new JLabel("charles.mcclish@microchip.com");
+        catchphrase = new JLabel("Its like a woodchipper for bugs!");
         this.add(logo);
         this.add(prog);
         this.add(author);
         this.add(email);
+        this.add(catchphrase);
 
         //this.pack();
         this.setVisible(true);
