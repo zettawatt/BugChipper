@@ -8,25 +8,30 @@ import gui.menubar.*;
 
 public class Mediator {
     
-    private AboutMenuItem miAbout;
-    private QuitMenuItem miQuit;
+    private AddProjMenuItem miAddProj;
+    private AddBugMenuItem miAddBug;
     private OpenProjMenuItem miOpenProj;
+    private QuitMenuItem miQuit;
     private PrefsMenuItem miPrefs;
+    private AboutMenuItem miAbout;
 
-    public void registerQuitMenuItem (QuitMenuItem inp_quitmi) {
-        miQuit = inp_quitmi;
+    public void registerAddProjMenuItem (AddProjMenuItem inp_addprojmi) {miAddProj = inp_addprojmi;}
+    public void registerAddBugMenuItem (AddBugMenuItem inp_addbugmi) {miAddBug = inp_addbugmi;}
+    public void registerOpenProjMenuItem (OpenProjMenuItem inp_openprojmi) {miOpenProj = inp_openprojmi;}
+    public void registerQuitMenuItem (QuitMenuItem inp_quitmi) {miQuit = inp_quitmi;}
+    public void registerPrefsMenuItem (PrefsMenuItem inp_prefsmi) {miPrefs = inp_prefsmi;}
+    public void registerAboutMenuItem (AboutMenuItem inp_aboutmi) {miAbout = inp_aboutmi;}
+
+    public void AddProj() {
+
     }
 
-    public void registerOpenProjMenuItem (OpenProjMenuItem inp_openprojmi) {
-        miOpenProj = inp_openprojmi;
+    public void AddBug() {
+
     }
 
-    public void registerPrefsMenuItem (PrefsMenuItem inp_prefsmi) {
-        miPrefs = inp_prefsmi;
-    }
+    public void OpenProj() {
 
-    public void registerAboutMenuItem (AboutMenuItem inp_aboutmi) {
-        miAbout = inp_aboutmi;
     }
 
     public void Exit() {
@@ -35,10 +40,6 @@ public class Mediator {
 
     public void About() {
         AboutDialog about = new AboutDialog();
-    }
-
-    public void OpenProj() {
-
     }
 
     public void Prefs() {

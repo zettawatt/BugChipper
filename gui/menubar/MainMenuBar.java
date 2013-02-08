@@ -22,19 +22,23 @@ public class MainMenuBar extends JMenuBar {
         /**
          * Initialize Menu Items
          */
-        QuitMenuItem fileQuit = new QuitMenuItem("Quit", mdtr);
+        AddProjMenuItem fileAddProj   = new AddProjMenuItem("Add Project", mdtr);
+        AddBugMenuItem fileAddBug     = new AddBugMenuItem("Add Bug", mdtr);
         OpenProjMenuItem fileOpenProj = new OpenProjMenuItem("Open Project", mdtr);
-        PrefsMenuItem editPrefs = new PrefsMenuItem("Preferences...", mdtr);
-        AboutMenuItem helpAbout = new AboutMenuItem("About", mdtr);
+        QuitMenuItem fileQuit         = new QuitMenuItem("Quit", mdtr);
+        PrefsMenuItem editPrefs       = new PrefsMenuItem("Preferences...", mdtr);
+        AboutMenuItem helpAbout       = new AboutMenuItem("About", mdtr);
 
         /**
          * Add event handlers to menu items
          */
         buttonHandler bh = new buttonHandler();
 
+        fileAddProj.addActionListener(bh);
+        fileAddBug.addActionListener(bh);
+        fileOpenProj.addActionListener(bh);
         fileQuit.addActionListener(bh);
         editPrefs.addActionListener(bh);
-        fileOpenProj.addActionListener(bh);
         helpAbout.addActionListener(bh);
 
         /**
@@ -42,6 +46,9 @@ public class MainMenuBar extends JMenuBar {
          */
 
         // File Menu
+        fileMenu.add(fileAddProj);
+        fileMenu.add(fileAddBug);
+        fileMenu.addSeparator();
         fileMenu.add(fileOpenProj);
         fileMenu.addSeparator();
         fileMenu.add(fileQuit);
