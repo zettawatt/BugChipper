@@ -6,6 +6,7 @@ import java.awt.event.*;
 import gui.eventhandlers.*;
 import gui.menubar.*;
 import gui.toolbar.*;
+import gui.tables.*;
 
 public class MainGUI {
 
@@ -16,6 +17,9 @@ public class MainGUI {
      * Create frame for application window
      */
         JFrame frame = new JFrame ();
+        //FIXME: Need to figure out how to set the frame icon
+        //ImageIcon bugchipperIcon = new ImageIcon("./icons/22x22/bug-buddy.png");
+        //frame.setIconImage(bugchipperIcon.getImage());
     
     /**
      * Setup frame properties
@@ -26,7 +30,27 @@ public class MainGUI {
 
     JPanel contentPane = new JPanel(new BorderLayout());
     contentPane.setOpaque(true);
-    JScrollPane scrollPane = new JScrollPane();
+
+    /**
+     * Initialize Column Header
+     */
+    String [] columnNames = {"Project",
+                            "Open Issues",
+                            "Date Modified",
+                            "Process",
+                            "Project Lead"};
+
+    /**
+     * Setup Table Data
+     */
+    Object [][] data = {
+        {"Project1", "6", "01/13/13", "65nm", "John Doe"},
+        {"Project2", "3", "02/06/13", "65nm", "John Doe"}
+    };
+
+
+    MainTable table = new MainTable(columnNames, data, mdtr);
+    JScrollPane scrollPane = new JScrollPane(table);
 
     /**
      * Add the menubar, toolbar, and contentpane
