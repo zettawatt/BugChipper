@@ -9,13 +9,13 @@ import gui.toolbar.*;
 import gui.tables.*;
 
 public class MainGUI {
+    Mediator mdtr;
 
-    private Mediator mdtr = new Mediator();
-
-    public void guiInit() {
-    /**
-     * Create frame for application window
-     */
+    public MainGUI (Mediator inp_mdtr) {
+        mdtr = inp_mdtr;
+        /**
+         * Create frame for application window
+         */
         JFrame frame = new JFrame ();
         //FIXME: Need to figure out how to set the frame icon
         //ImageIcon bugchipperIcon = new ImageIcon("./icons/22x22/bug-buddy.png");

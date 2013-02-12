@@ -5,8 +5,8 @@ import gui.*;
 
 public class BugChipperApp {
     {
-        MainGUI g = new MainGUI();
-        g.guiInit();
+        Mediator mdtr = new Mediator();
+        MainGUI gui   = new MainGUI(mdtr);
     }
 }
     
