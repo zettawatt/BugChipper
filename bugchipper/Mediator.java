@@ -8,6 +8,7 @@ import bugchipper.gui.menubar.*;
 import bugchipper.gui.toolbar.*;
 import bugchipper.gui.popups.*;
 import bugchipper.gui.*;
+import bugchipper.database.*;
 
 public class Mediator {
     
@@ -24,6 +25,9 @@ public class Mediator {
     // Toolbar Buttons
     private AddProjToolBut tbAddProj;
     private AddBugToolBut tbAddBug;
+
+    // Database
+    private DAO dao;
     
     // Register menu items and toolbar buttons
     public void registerAddProjMenuItem (AddProjMenuItem inp_addprojmi) {miAddProj = inp_addprojmi;}
@@ -37,6 +41,9 @@ public class Mediator {
 
     public void registerAddProjToolBut (AddProjToolBut inp_addprojtb) {tbAddProj = inp_addprojtb;}
     public void registerAddBugToolBut (AddBugToolBut inp_addbugtb) {tbAddBug = inp_addbugtb;}
+
+    // Register database object
+    public void registerDAO (DAO inp_dao) {dao = inp_dao;}
 
     public void AddProj() {
         System.out.println("Added Project!");
