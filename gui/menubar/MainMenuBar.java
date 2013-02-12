@@ -17,6 +17,7 @@ public class MainMenuBar extends JMenuBar {
          */
         JMenu fileMenu = new JMenu("File");
         JMenu editMenu = new JMenu("Edit");
+        JMenu dbMenu   = new JMenu("Database");
         JMenu helpMenu = new JMenu("Help");
 
         /**
@@ -27,6 +28,8 @@ public class MainMenuBar extends JMenuBar {
         OpenProjMenuItem fileOpenProj = new OpenProjMenuItem("Open Project", mdtr);
         QuitMenuItem fileQuit         = new QuitMenuItem("Quit", mdtr);
         PrefsMenuItem editPrefs       = new PrefsMenuItem("Preferences...", mdtr);
+        LoginMenuItem dbLogin         = new LoginMenuItem("Login", mdtr);
+        AdminMenuItem dbAdmin         = new AdminMenuItem("Database Management", mdtr);
         AboutMenuItem helpAbout       = new AboutMenuItem("About", mdtr);
 
         /**
@@ -39,6 +42,8 @@ public class MainMenuBar extends JMenuBar {
         fileOpenProj.addActionListener(bh);
         fileQuit.addActionListener(bh);
         editPrefs.addActionListener(bh);
+        dbLogin.addActionListener(bh);
+        dbAdmin.addActionListener(bh);
         helpAbout.addActionListener(bh);
 
         /**
@@ -56,6 +61,11 @@ public class MainMenuBar extends JMenuBar {
         // Edit Menu
         editMenu.add(editPrefs);
 
+        // Database Menu
+        dbMenu.add(dbLogin);
+        dbMenu.addSeparator();
+        dbMenu.add(dbAdmin);
+
         // Help Menu
         helpMenu.add(helpAbout);
 
@@ -64,6 +74,7 @@ public class MainMenuBar extends JMenuBar {
          */
         this.add(fileMenu);
         this.add(editMenu);
+        this.add(dbMenu);
         this.add(Box.createHorizontalGlue()); // Horizontal filler
         this.add(helpMenu);
     }
