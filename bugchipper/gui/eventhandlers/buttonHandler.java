@@ -1,4 +1,4 @@
-package gui.eventhandlers;
+package bugchipper.gui.eventhandlers;
 
 import javax.swing.*;
 import java.awt.*;

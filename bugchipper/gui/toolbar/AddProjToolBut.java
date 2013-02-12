@@ -1,10 +1,11 @@
-package gui.toolbar;
+package bugchipper.gui.toolbar;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import gui.eventhandlers.*;
-import gui.*;
+import bugchipper.gui.eventhandlers.*;
+import bugchipper.gui.*;
+import bugchipper.*;
 
 public class AddProjToolBut extends JButton implements CommandInterface {
     Mediator mdtr;

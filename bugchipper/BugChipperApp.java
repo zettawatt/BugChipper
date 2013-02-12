@@ -1,7 +1,9 @@
+package bugchipper;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import gui.*;
+import bugchipper.gui.*;
 
 public class BugChipperApp {
     {

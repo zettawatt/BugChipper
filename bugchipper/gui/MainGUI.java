@@ -1,12 +1,13 @@
-package gui;
+package bugchipper.gui;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import gui.eventhandlers.*;
-import gui.menubar.*;
-import gui.toolbar.*;
-import gui.tables.*;
+import bugchipper.gui.eventhandlers.*;
+import bugchipper.gui.menubar.*;
+import bugchipper.gui.toolbar.*;
+import bugchipper.gui.tables.*;
+import bugchipper.*;
 
 public class MainGUI {
     Mediator mdtr;

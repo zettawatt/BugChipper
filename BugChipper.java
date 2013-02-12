@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import gui.*;
+import bugchipper.*;
 
 public class BugChipper {
 

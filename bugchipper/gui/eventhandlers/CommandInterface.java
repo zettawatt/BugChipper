@@ -1,4 +1,4 @@
-package gui.eventhandlers;
+package bugchipper.gui.eventhandlers;
 
 // Interface used for processing events
 public interface CommandInterface {

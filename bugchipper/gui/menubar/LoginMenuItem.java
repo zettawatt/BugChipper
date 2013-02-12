@@ -1,10 +1,11 @@
-package gui.menubar;
+package bugchipper.gui.menubar;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import gui.eventhandlers.*;
-import gui.*;
+import bugchipper.gui.eventhandlers.*;
+import bugchipper.gui.*;
+import bugchipper.*;
 
 public class LoginMenuItem extends JMenuItem implements CommandInterface {
     Mediator mdtr;
