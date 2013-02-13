@@ -9,7 +9,11 @@ public class DAO {
     public DAO (Mediator inp_mdtr) {
         mdtr = inp_mdtr;
         mdtr.registerDAO(this);
-        System.out.println("Database Access Object Initialized");
+    }
+
+    public boolean dbLogin (String user, String pswd) {
+        System.out.println("User: " + user + " Password: " + pswd);
+        return true;
     }
 }
 

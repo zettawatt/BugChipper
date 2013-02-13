@@ -56,12 +56,15 @@ public class MainGUI {
     /**
      * Add the menubar, toolbar, and contentpane
      */
+    LoginStat ls = new LoginStat(mdtr);
+
     MainMenuBar mb = new MainMenuBar(mdtr);
     frame.setJMenuBar(mb);
 
     MainToolBar tb = new MainToolBar("BugChipper Toolbar", mdtr);
     contentPane.add(tb, BorderLayout.PAGE_START);
     contentPane.add(scrollPane, BorderLayout.CENTER);
+    contentPane.add(ls, BorderLayout.PAGE_END);
     contentPane.setPreferredSize(new Dimension(500, 300));
     
 

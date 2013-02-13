@@ -11,7 +11,7 @@ import bugchipper.gui.*;
 import bugchipper.database.*;
 
 public class Mediator {
-    
+
     // Menu Items
     private AddProjMenuItem miAddProj;
     private AddBugMenuItem miAddBug;
@@ -28,6 +28,7 @@ public class Mediator {
 
     // Database
     private DAO dao;
+    private LoginStat ls;
     
     // Register menu items and toolbar buttons
     public void registerAddProjMenuItem (AddProjMenuItem inp_addprojmi) {miAddProj = inp_addprojmi;}
@@ -44,6 +45,7 @@ public class Mediator {
 
     // Register database object
     public void registerDAO (DAO inp_dao) {dao = inp_dao;}
+    public void registerLoginStat (LoginStat inp_ls) {ls = inp_ls;}
 
     public void AddProj() {
         System.out.println("Added Project!");
@@ -71,6 +73,8 @@ public class Mediator {
 
     public void Login() {
         System.out.println("Logging into Database!");
+        //LoginDialog ld = new LoginDialog();
+        ls.updateStat(dao.dbLogin("user", "pass"));
     }
 
     public void Admin() {
