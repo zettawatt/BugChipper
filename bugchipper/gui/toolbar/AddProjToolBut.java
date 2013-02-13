@@ -16,7 +16,7 @@ public class AddProjToolBut extends JButton implements CommandInterface {
     }
 
     public AddProjToolBut (String tooltip, Mediator inp_mdtr) {
-        addProj = createImageIcon("../icons/22x22/folder-new-7.png", "Add Project Icon");
+        addProj = createImageIcon("../icons/16x16/project-add.png", "Add Project Icon");
         this.setIcon(addProj);
         this.setToolTipText(tooltip);
         mdtr = inp_mdtr;

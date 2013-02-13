@@ -16,7 +16,7 @@ public class AddBugToolBut extends JButton implements CommandInterface {
     }
 
     public AddBugToolBut (String tooltip, Mediator inp_mdtr) {
-        addBug = createImageIcon("../icons/22x22/bug-buddy.png", "Add Bug Icon");
+        addBug = createImageIcon("../icons/16x16/bug-add.png", "Add Bug Icon");
         this.setIcon(addBug);
         this.setToolTipText(tooltip);
         mdtr = inp_mdtr;
