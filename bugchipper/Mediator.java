@@ -19,6 +19,7 @@ public class Mediator {
     private QuitMenuItem miQuit;
     private PrefsMenuItem miPrefs;
     private LoginMenuItem miLogin;
+    private LogoutMenuItem miLogout;
     private AdminMenuItem miAdmin;
     private AboutMenuItem miAbout;
 
@@ -37,6 +38,7 @@ public class Mediator {
     public void registerQuitMenuItem (QuitMenuItem inp_quitmi) {miQuit = inp_quitmi;}
     public void registerPrefsMenuItem (PrefsMenuItem inp_prefsmi) {miPrefs = inp_prefsmi;}
     public void registerLoginMenuItem (LoginMenuItem inp_loginmi) {miLogin = inp_loginmi;}
+    public void registerLogoutMenuItem (LogoutMenuItem inp_logoutmi) {miLogout = inp_logoutmi;}
     public void registerAdminMenuItem (AdminMenuItem inp_adminmi) {miAdmin = inp_adminmi;}
     public void registerAboutMenuItem (AboutMenuItem inp_aboutmi) {miAbout = inp_aboutmi;}
 
@@ -74,7 +76,18 @@ public class Mediator {
     public void Login() {
         System.out.println("Logging into Database!");
         //LoginDialog ld = new LoginDialog();
-        ls.updateStat(dao.dbLogin("user", "pass"));
+        if (dao.dbLogin("user", "pass")) {
+            ls.updateStat(true);
+            miLogin.setEnabled(false);
+            miLogout.setEnabled(true);
+        }
+    }
+
+    public void Logout() {
+        System.out.println("Logging out of Database!");
+        ls.updateStat(false);
+        miLogout.setEnabled(false);
+        miLogin.setEnabled(true);
     }
 
     public void Admin() {

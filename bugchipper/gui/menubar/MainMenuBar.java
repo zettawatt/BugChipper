@@ -30,6 +30,7 @@ public class MainMenuBar extends JMenuBar {
         QuitMenuItem fileQuit         = new QuitMenuItem("Quit", mdtr);
         PrefsMenuItem editPrefs       = new PrefsMenuItem("Preferences...", mdtr);
         LoginMenuItem dbLogin         = new LoginMenuItem("Login", mdtr);
+        LogoutMenuItem dbLogout       = new LogoutMenuItem("Logout", mdtr);
         AdminMenuItem dbAdmin         = new AdminMenuItem("Database Management", mdtr);
         AboutMenuItem helpAbout       = new AboutMenuItem("About", mdtr);
 
@@ -44,6 +45,7 @@ public class MainMenuBar extends JMenuBar {
         fileQuit.addActionListener(bh);
         editPrefs.addActionListener(bh);
         dbLogin.addActionListener(bh);
+        dbLogout.addActionListener(bh);
         dbAdmin.addActionListener(bh);
         helpAbout.addActionListener(bh);
 
@@ -64,6 +66,7 @@ public class MainMenuBar extends JMenuBar {
 
         // Database Menu
         dbMenu.add(dbLogin);
+        dbMenu.add(dbLogout);
         dbMenu.addSeparator();
         dbMenu.add(dbAdmin);
 
