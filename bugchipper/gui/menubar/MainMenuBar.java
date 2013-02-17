@@ -18,6 +18,7 @@ public class MainMenuBar extends JMenuBar {
          */
         JMenu fileMenu = new JMenu("File");
         JMenu editMenu = new JMenu("Edit");
+        JMenu viewMenu = new JMenu("View");
         JMenu dbMenu   = new JMenu("Database");
         JMenu helpMenu = new JMenu("Help");
 
@@ -29,6 +30,7 @@ public class MainMenuBar extends JMenuBar {
         OpenProjMenuItem fileOpenProj = new OpenProjMenuItem("Open Project", mdtr);
         QuitMenuItem fileQuit         = new QuitMenuItem("Quit", mdtr);
         PrefsMenuItem editPrefs       = new PrefsMenuItem("Preferences...", mdtr);
+        ViewLogMenuItem viewViewLog   = new ViewLogMenuItem("View Log", mdtr);
         LoginMenuItem dbLogin         = new LoginMenuItem("Login", mdtr);
         LogoutMenuItem dbLogout       = new LogoutMenuItem("Logout", mdtr);
         AdminMenuItem dbAdmin         = new AdminMenuItem("Database Management", mdtr);
@@ -44,6 +46,7 @@ public class MainMenuBar extends JMenuBar {
         fileOpenProj.addActionListener(bh);
         fileQuit.addActionListener(bh);
         editPrefs.addActionListener(bh);
+        viewViewLog.addActionListener(bh);
         dbLogin.addActionListener(bh);
         dbLogout.addActionListener(bh);
         dbAdmin.addActionListener(bh);
@@ -64,6 +67,9 @@ public class MainMenuBar extends JMenuBar {
         // Edit Menu
         editMenu.add(editPrefs);
 
+        // View Menu
+        viewMenu.add(viewViewLog);
+
         // Database Menu
         dbMenu.add(dbLogin);
         dbMenu.add(dbLogout);
@@ -78,6 +84,7 @@ public class MainMenuBar extends JMenuBar {
          */
         this.add(fileMenu);
         this.add(editMenu);
+        this.add(viewMenu);
         this.add(dbMenu);
         this.add(Box.createHorizontalGlue()); // Horizontal filler
         this.add(helpMenu);

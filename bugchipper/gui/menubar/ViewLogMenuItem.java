@@ -7,18 +7,17 @@ import bugchipper.gui.eventhandlers.*;
 import bugchipper.gui.*;
 import bugchipper.*;
 
-public class AdminMenuItem extends JMenuItem implements CommandInterface {
+public class ViewLogMenuItem extends JMenuItem implements CommandInterface {
     Mediator mdtr;
 
     public void processEvent() {
-        mdtr.Admin();
+        mdtr.ViewLog();
     }
 
-    public AdminMenuItem (String name, Mediator inp_mdtr) {
+    public ViewLogMenuItem (String name, Mediator inp_mdtr) {
         super(name);
         mdtr = inp_mdtr;
-        mdtr.registerAdminMenuItem(this);
-        this.setEnabled(false);
+        mdtr.registerViewLogMenuItem(this);
     }
 }
 

@@ -18,6 +18,7 @@ public class Mediator {
     private OpenProjMenuItem miOpenProj;
     private QuitMenuItem miQuit;
     private PrefsMenuItem miPrefs;
+    private ViewLogMenuItem miViewLog;
     private LoginMenuItem miLogin;
     private LogoutMenuItem miLogout;
     private AdminMenuItem miAdmin;
@@ -30,6 +31,14 @@ public class Mediator {
     // Database
     private DAO dao;
     private LoginStat ls;
+
+    // Log
+    private BugChipLog log;
+
+    // Constructor
+    public Mediator() {
+        log = new BugChipLog(this);
+    }
     
     // Register menu items and toolbar buttons
     public void registerAddProjMenuItem (AddProjMenuItem inp_addprojmi) {miAddProj = inp_addprojmi;}
@@ -37,6 +46,7 @@ public class Mediator {
     public void registerOpenProjMenuItem (OpenProjMenuItem inp_openprojmi) {miOpenProj = inp_openprojmi;}
     public void registerQuitMenuItem (QuitMenuItem inp_quitmi) {miQuit = inp_quitmi;}
     public void registerPrefsMenuItem (PrefsMenuItem inp_prefsmi) {miPrefs = inp_prefsmi;}
+    public void registerViewLogMenuItem (ViewLogMenuItem inp_viewlogmi) {miViewLog = inp_viewlogmi;}
     public void registerLoginMenuItem (LoginMenuItem inp_loginmi) {miLogin = inp_loginmi;}
     public void registerLogoutMenuItem (LogoutMenuItem inp_logoutmi) {miLogout = inp_logoutmi;}
     public void registerAdminMenuItem (AdminMenuItem inp_adminmi) {miAdmin = inp_adminmi;}
@@ -49,16 +59,19 @@ public class Mediator {
     public void registerDAO (DAO inp_dao) {dao = inp_dao;}
     public void registerLoginStat (LoginStat inp_ls) {ls = inp_ls;}
 
+    // Register log
+    public void registerBugChipLog (BugChipLog inp_log) {log = inp_log;}
+
     public void AddProj() {
-        System.out.println("Added Project!");
+        log.addData("Added Project!");
     }
 
     public void AddBug() {
-        System.out.println("Added Bug!");
+        log.addData("Added Bug!");
     }
 
     public void OpenProj() {
-        System.out.println("Opened Project!");
+        log.addData("Opened Project!");
     }
 
     public void Exit() {
@@ -70,27 +83,38 @@ public class Mediator {
     }
 
     public void Prefs() {
-        System.out.println("Editting Preferences!");
+        log.addData("Editting Preferences!");
+    }
+
+    public void ViewLog() {
+        log.addData("View Log!");
+        LogDialog viewLog = new LogDialog(log);
+    }
+
+    public void LoginPrompt() {
+
     }
 
     public void Login() {
-        System.out.println("Logging into Database!");
+        log.addData("Logging into Database!");
         //LoginDialog ld = new LoginDialog();
         if (dao.dbLogin("user", "pass")) {
             ls.updateStat(true);
             miLogin.setEnabled(false);
             miLogout.setEnabled(true);
+            miAdmin.setEnabled(true);
         }
     }
 
     public void Logout() {
-        System.out.println("Logging out of Database!");
+        log.addData("Logging out of Database!");
         ls.updateStat(false);
-        miLogout.setEnabled(false);
         miLogin.setEnabled(true);
+        miLogout.setEnabled(false);
+        miAdmin.setEnabled(false);
     }
 
     public void Admin() {
-        System.out.println("Administer Database!");
+        log.addData("Administer Database!");
     }
 }
