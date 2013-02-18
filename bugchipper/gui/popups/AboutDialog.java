@@ -12,11 +12,11 @@ public class AboutDialog extends JDialog {
     private ImageIcon icon;
 
     {
-        icon = createImageIcon("../icons/ant_carry_chip.jpeg", "Bugchipper logo");
+        icon = createImageIcon("../icons/bugchipper-logo-large.png", "Bugchipper logo");
 
         this.setLayout( new FlowLayout());
         this.setTitle("About BugChipper");
-        this.setSize(250,250);
+        this.setSize(250,400);
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
 
