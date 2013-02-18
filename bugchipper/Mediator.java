@@ -34,7 +34,7 @@ public class Mediator {
     private LoginDialogLoginBut loginbut;
 
     // Log
-    private BugChipLog log;
+    public BugChipLog log;
 
     // Constructor
     public Mediator() {
