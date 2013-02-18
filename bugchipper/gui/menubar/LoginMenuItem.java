@@ -11,7 +11,7 @@ public class LoginMenuItem extends JMenuItem implements CommandInterface {
     Mediator mdtr;
 
     public void processEvent() {
-        mdtr.Login();
+        mdtr.LoginPrompt();
     }
 
     public LoginMenuItem (String name, Mediator inp_mdtr) {

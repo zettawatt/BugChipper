@@ -31,6 +31,7 @@ public class Mediator {
     // Database
     private DAO dao;
     private LoginStat ls;
+    private LoginDialogLoginBut loginbut;
 
     // Log
     private BugChipLog log;
@@ -92,22 +93,20 @@ public class Mediator {
     }
 
     public void LoginPrompt() {
-
+        LoginDialog ld = new LoginDialog(this, dao);
     }
 
     public void Login() {
         log.addData("Logging into Database!");
-        //LoginDialog ld = new LoginDialog();
-        if (dao.dbLogin("user", "pass")) {
-            ls.updateStat(true);
-            miLogin.setEnabled(false);
-            miLogout.setEnabled(true);
-            miAdmin.setEnabled(true);
-        }
+        ls.updateStat(true);
+        miLogin.setEnabled(false);
+        miLogout.setEnabled(true);
+        miAdmin.setEnabled(true);
     }
 
     public void Logout() {
         log.addData("Logging out of Database!");
+        dao.dbLogout();
         ls.updateStat(false);
         miLogin.setEnabled(true);
         miLogout.setEnabled(false);

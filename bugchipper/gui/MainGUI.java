@@ -29,6 +29,9 @@ public class MainGUI {
     frame.setTitle("BugChipper");
     frame.setLocationRelativeTo(null);
 
+    // For any button that is highlighted, the Enter key will activate it
+    UIManager.put("Button.defaultButtonFollowsFocus", Boolean.TRUE);
+
     JPanel contentPane = new JPanel(new BorderLayout());
     contentPane.setOpaque(true);
 
