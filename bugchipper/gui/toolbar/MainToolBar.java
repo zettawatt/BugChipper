@@ -17,19 +17,25 @@ public class MainToolBar extends JToolBar {
         /**
          * Initialize Toolbar Buttons
          */
-        AddBugToolBut addBugBut   = new AddBugToolBut("Add a New Bug", mdtr);
-        AddProjToolBut addProjBut = new AddProjToolBut("Add a New Project", mdtr);
+        RefreshToolBut refreshBut       = new RefreshToolBut("Refresh Current Tab", mdtr);
+        RefreshAllToolBut refreshAllBut = new RefreshAllToolBut("Refresh All Tabs", mdtr);
+        AddBugToolBut addBugBut         = new AddBugToolBut("Add a New Bug", mdtr);
+        AddProjToolBut addProjBut       = new AddProjToolBut("Add a New Project", mdtr);
 
         /**
          * Add event handlers to toolbar buttons
          */
         buttonHandler bh = new buttonHandler();
 
+        refreshBut.addActionListener(bh);
+        refreshAllBut.addActionListener(bh);
         addBugBut.addActionListener(bh);
         addProjBut.addActionListener(bh);
 
         this.setFloatable(true);
         this.add(addBugBut);
         this.add(addProjBut);
+        this.add(refreshBut);
+        this.add(refreshAllBut);
     }
 }

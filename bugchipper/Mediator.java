@@ -19,6 +19,8 @@ public class Mediator {
     private QuitMenuItem miQuit;
     private PrefsMenuItem miPrefs;
     private ViewLogMenuItem miViewLog;
+    private RefreshMenuItem miRefresh;
+    private RefreshAllMenuItem miRefreshAll;
     private LoginMenuItem miLogin;
     private LogoutMenuItem miLogout;
     private AdminMenuItem miAdmin;
@@ -27,6 +29,8 @@ public class Mediator {
     // Toolbar Buttons
     private AddProjToolBut tbAddProj;
     private AddBugToolBut tbAddBug;
+    private RefreshToolBut tbRefresh;
+    private RefreshAllToolBut tbRefreshAll;
 
     // Database
     private DAO dao;
@@ -47,6 +51,8 @@ public class Mediator {
     public void registerOpenProjMenuItem (OpenProjMenuItem inp_openprojmi) {miOpenProj = inp_openprojmi;}
     public void registerQuitMenuItem (QuitMenuItem inp_quitmi) {miQuit = inp_quitmi;}
     public void registerPrefsMenuItem (PrefsMenuItem inp_prefsmi) {miPrefs = inp_prefsmi;}
+    public void registerRefreshMenuItem (RefreshMenuItem inp_refreshmi) {miRefresh = inp_refreshmi;}
+    public void registerRefreshAllMenuItem (RefreshAllMenuItem inp_refreshallmi) {miRefreshAll = inp_refreshallmi;}
     public void registerViewLogMenuItem (ViewLogMenuItem inp_viewlogmi) {miViewLog = inp_viewlogmi;}
     public void registerLoginMenuItem (LoginMenuItem inp_loginmi) {miLogin = inp_loginmi;}
     public void registerLogoutMenuItem (LogoutMenuItem inp_logoutmi) {miLogout = inp_logoutmi;}
@@ -55,6 +61,8 @@ public class Mediator {
 
     public void registerAddProjToolBut (AddProjToolBut inp_addprojtb) {tbAddProj = inp_addprojtb;}
     public void registerAddBugToolBut (AddBugToolBut inp_addbugtb) {tbAddBug = inp_addbugtb;}
+    public void registerRefreshToolBut (RefreshToolBut inp_refreshtb) {tbRefresh = inp_refreshtb;}
+    public void registerRefreshAllToolBut (RefreshAllToolBut inp_refreshalltb) {tbRefreshAll = inp_refreshalltb;}
 
     // Register database object
     public void registerDAO (DAO inp_dao) {dao = inp_dao;}
@@ -85,6 +93,14 @@ public class Mediator {
 
     public void Prefs() {
         log.addData("Editting Preferences!");
+    }
+
+    public void Refresh() {
+        log.addData("Refreshing Current Tab!");
+    }
+
+    public void RefreshAll() {
+        log.addData("Refreshing All Tabs!");
     }
 
     public void ViewLog() {

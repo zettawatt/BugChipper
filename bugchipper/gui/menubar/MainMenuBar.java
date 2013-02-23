@@ -25,16 +25,18 @@ public class MainMenuBar extends JMenuBar {
         /**
          * Initialize Menu Items
          */
-        AddProjMenuItem fileAddProj   = new AddProjMenuItem("Add Project", mdtr);
-        AddBugMenuItem fileAddBug     = new AddBugMenuItem("Add Bug", mdtr);
-        OpenProjMenuItem fileOpenProj = new OpenProjMenuItem("Open Project", mdtr);
-        QuitMenuItem fileQuit         = new QuitMenuItem("Quit", mdtr);
-        PrefsMenuItem editPrefs       = new PrefsMenuItem("Preferences...", mdtr);
-        ViewLogMenuItem viewViewLog   = new ViewLogMenuItem("View Log", mdtr);
-        LoginMenuItem dbLogin         = new LoginMenuItem("Login", mdtr);
-        LogoutMenuItem dbLogout       = new LogoutMenuItem("Logout", mdtr);
-        AdminMenuItem dbAdmin         = new AdminMenuItem("Database Management", mdtr);
-        AboutMenuItem helpAbout       = new AboutMenuItem("About", mdtr);
+        AddProjMenuItem fileAddProj       = new AddProjMenuItem("Add Project", mdtr);
+        AddBugMenuItem fileAddBug         = new AddBugMenuItem("Add Bug", mdtr);
+        OpenProjMenuItem fileOpenProj     = new OpenProjMenuItem("Open Project", mdtr);
+        QuitMenuItem fileQuit             = new QuitMenuItem("Quit", mdtr);
+        PrefsMenuItem editPrefs           = new PrefsMenuItem("Preferences...", mdtr);
+        RefreshMenuItem viewRefresh       = new RefreshMenuItem("Refresh", mdtr);
+        RefreshAllMenuItem viewRefreshAll = new RefreshAllMenuItem("Refresh All", mdtr);
+        ViewLogMenuItem viewViewLog       = new ViewLogMenuItem("View Log", mdtr);
+        LoginMenuItem dbLogin             = new LoginMenuItem("Login", mdtr);
+        LogoutMenuItem dbLogout           = new LogoutMenuItem("Logout", mdtr);
+        AdminMenuItem dbAdmin             = new AdminMenuItem("Database Management", mdtr);
+        AboutMenuItem helpAbout           = new AboutMenuItem("About", mdtr);
 
         /**
          * Add event handlers to menu items
@@ -46,6 +48,8 @@ public class MainMenuBar extends JMenuBar {
         fileOpenProj.addActionListener(bh);
         fileQuit.addActionListener(bh);
         editPrefs.addActionListener(bh);
+        viewRefresh.addActionListener(bh);
+        viewRefreshAll.addActionListener(bh);
         viewViewLog.addActionListener(bh);
         dbLogin.addActionListener(bh);
         dbLogout.addActionListener(bh);
@@ -68,6 +72,9 @@ public class MainMenuBar extends JMenuBar {
         editMenu.add(editPrefs);
 
         // View Menu
+        viewMenu.add(viewRefresh);
+        viewMenu.add(viewRefreshAll);
+        viewMenu.addSeparator();
         viewMenu.add(viewViewLog);
 
         // Database Menu
