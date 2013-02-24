@@ -18,7 +18,7 @@ public class AddProjDialog extends JDialog {
     JTextField projPathField, projNameField, ownerNameField;
     JTextArea componentsArea, categoriesArea;
     JFileChooser projFileChooser;
-    JLabel filePathLabel, projNameLabel, ownerNameLabel, componentsLabel, categoriesLabel;
+    JLabel filePathLabel, projNameLabel, ownerNameLabel, componentsLabel, categoriesLabel, noteLabel;
     JPanel projFilePanel, projEntriesPanel, projSubmitPanel;
     AddProjBut addProjBut;
     CancelBut cancelBut;
@@ -46,6 +46,7 @@ public class AddProjDialog extends JDialog {
         projNameField = new JTextField(20);
         ownerNameLabel = new JLabel("Name of Project Owner:");
         ownerNameField = new JTextField(20);
+        noteLabel = new JLabel("NOTE: place only ONE component and category per line");
         componentsLabel = new JLabel("Components:");
         componentsArea = new JTextArea();
         componentScroller = new JScrollPane(componentsArea);
@@ -125,14 +126,21 @@ public class AddProjDialog extends JDialog {
         entriesCon.gridwidth = 2;
         projEntriesPanel.add(ownerNameField, entriesCon);
 
-        //entriesCon.fill = GridBagConstraints.HORIZONTAL;
+        entriesCon.fill = GridBagConstraints.HORIZONTAL;
         entriesCon.gridx = 0;
         entriesCon.gridy = 2;
+        entriesCon.ipady = 30;
+        entriesCon.gridwidth = 6;
+        projEntriesPanel.add(noteLabel, entriesCon);
+
+        //entriesCon.fill = GridBagConstraints.HORIZONTAL;
+        entriesCon.gridx = 0;
+        entriesCon.gridy = 3;
         entriesCon.ipady = 0;
         projEntriesPanel.add(componentsLabel, entriesCon);
         //entriesCon.fill = GridBagConstraints.HORIZONTAL;
         entriesCon.gridx = 3;
-        entriesCon.gridy = 2;
+        entriesCon.gridy = 3;
         entriesCon.ipady = 0;
         projEntriesPanel.add(categoriesLabel, entriesCon);
         entriesCon.fill = GridBagConstraints.BOTH;
@@ -140,14 +148,14 @@ public class AddProjDialog extends JDialog {
         entriesCon.weighty = 0.5;
         entriesCon.gridwidth = 3;
         entriesCon.gridx = 0;
-        entriesCon.gridy = 3;
+        entriesCon.gridy = 4;
         projEntriesPanel.add(componentScroller, entriesCon);
         entriesCon.fill = GridBagConstraints.BOTH;
         entriesCon.weightx = 0.5;
         entriesCon.weighty = 0.5;
         entriesCon.gridwidth = 3;
         entriesCon.gridx = 3;
-        entriesCon.gridy = 3;
+        entriesCon.gridy = 4;
         projEntriesPanel.add(categoryScroller, entriesCon);
 
         projSubmitPanel = new JPanel(new FlowLayout());
