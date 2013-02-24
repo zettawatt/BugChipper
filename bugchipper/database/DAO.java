@@ -3,6 +3,8 @@ package bugchipper.database;
 import bugchipper.*;
 import com.db4o.*;
 import com.db4o.cs.*;
+import com.db4o.cs.ssl.*;
+import com.db4o.cs.config.*;
 
 public class DAO {
     Mediator mdtr;
@@ -18,9 +20,13 @@ public class DAO {
     }
 
     public boolean dbLogin (String user, String pass) {
+        // Add SSL encryption for network traffic
+        // FIXME: Need to add SSL certificates to java for this to work
+        ClientConfiguration configuration = Db4oClientServer.newClientConfiguration();
+        //configuration.common().add(new SSLSupport());
         con = null;
         try {
-            con = Db4oClientServer.openClient(dbURL, dbPort, user, pass);
+            con = Db4oClientServer.openClient(configuration, dbURL, dbPort, user, pass);
             mdtr.log.addData("Attempting to connect to database...");
             mdtr.log.addData("Successful login with username "+user);
         } catch (Exception e) {

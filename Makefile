@@ -6,7 +6,6 @@ all:
 	javac `find . -name '*.java'`
 
 run:
-	java BugChipperServer &
 	java BugChipper
 
 clean:

@@ -1,4 +1,4 @@
-package bugchipper.gui.popups;
+package bugchipper.gui.popups.login;
 
 import javax.swing.*;
 import java.awt.*;

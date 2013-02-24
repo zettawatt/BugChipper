@@ -7,6 +7,8 @@ import bugchipper.gui.eventhandlers.*;
 import bugchipper.gui.menubar.*;
 import bugchipper.gui.toolbar.*;
 import bugchipper.gui.popups.*;
+import bugchipper.gui.popups.addproj.*;
+import bugchipper.gui.popups.login.*;
 import bugchipper.gui.*;
 import bugchipper.database.*;
 
@@ -72,7 +74,7 @@ public class Mediator {
     public void registerBugChipLog (BugChipLog inp_log) {log = inp_log;}
 
     public void AddProj() {
-        log.addData("Added Project!");
+        new AddProjDialog(this, dao);
     }
 
     public void AddBug() {
@@ -88,7 +90,7 @@ public class Mediator {
     }
 
     public void About() {
-        AboutDialog about = new AboutDialog();
+        new AboutDialog();
     }
 
     public void Prefs() {
@@ -109,7 +111,7 @@ public class Mediator {
     }
 
     public void LoginPrompt() {
-        LoginDialog ld = new LoginDialog(this, dao);
+        new LoginDialog(this, dao);
     }
 
     public void Login() {
