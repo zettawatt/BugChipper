@@ -1,27 +1,43 @@
 package bugchipper.database;
 
-import java.sql.*;
 import bugchipper.*;
+import com.db4o.*;
+import com.db4o.cs.*;
 
 public class DAO {
     Mediator mdtr;
-    DBConnect con;
-    String dbURL, dbName;
+    ObjectContainer con;
+    String dbURL;
+    int dbPort;
 
-    public DAO (String inp_url, String inp_dbname, Mediator inp_mdtr) {
+    public DAO (String inp_url, int inp_dbport, Mediator inp_mdtr) {
         dbURL = inp_url;
-        dbName = inp_dbname;
+        dbPort = inp_dbport;
         mdtr = inp_mdtr;
         mdtr.registerDAO(this);
-        con = new DBConnect(dbURL, dbName, mdtr);
     }
 
     public boolean dbLogin (String user, String pass) {
-        return con.connect(user,pass);
+        con = null;
+        try {
+            con = Db4oClientServer.openClient(dbURL, dbPort, user, pass);
+            mdtr.log.addData("Attempting to connect to database...");
+            mdtr.log.addData("Successful login with username "+user);
+        } catch (Exception e) {
+            mdtr.log.addData("Login failed with username "+user);
+            mdtr.log.addData("Login failure exception: "+e);
+            return false;
+        }
+        return true;
     }
 
     public void dbLogout () {
-        con.disconnect();
+        try {
+            con.close();
+            mdtr.log.addData("Successfully logged out of database");
+        } catch (Exception e) {
+            mdtr.log.addData("Logout failed with exception: "+e);
+        }
     }
 }
 
