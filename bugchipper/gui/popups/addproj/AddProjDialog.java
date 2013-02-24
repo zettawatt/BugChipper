@@ -15,7 +15,8 @@ import bugchipper.gui.eventhandlers.*;
 public class AddProjDialog extends JDialog {
     Mediator mdtr;
     DAO dao;
-    JTextField projNameField;
+    JTextField projPathField, projNameField, ownerNameField;
+    JTextArea componentsArea, categoriesArea;
     JFileChooser projFileChooser;
     JLabel filePathLabel, projNameLabel, ownerNameLabel, componentsLabel, categoriesLabel;
     JPanel projFilePanel, projEntriesPanel, projSubmitPanel;
@@ -23,6 +24,7 @@ public class AddProjDialog extends JDialog {
     CancelBut cancelBut;
     FindProjBut findBut;
     ApplyBut applyBut;
+    JScrollPane componentScroller, categoryScroller;
 
     public AddProjDialog(Mediator inp_mdtr, DAO inp_dao) {
         mdtr = inp_mdtr;
@@ -36,9 +38,22 @@ public class AddProjDialog extends JDialog {
         UIManager.put("Button.defaultButtonFollowsFocus", Boolean.TRUE);
 
         filePathLabel = new JLabel("Project file path:");
-        projNameField = new JTextField(30);
+        projPathField = new JTextField(30);
         findBut = new FindProjBut("Find",this);
         applyBut = new ApplyBut("Apply", this);
+
+        projNameLabel = new JLabel("Name of Project:");
+        projNameField = new JTextField(20);
+        ownerNameLabel = new JLabel("Name of Project Owner:");
+        ownerNameField = new JTextField(20);
+        componentsLabel = new JLabel("Components:");
+        componentsArea = new JTextArea();
+        componentScroller = new JScrollPane(componentsArea);
+        componentScroller.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        categoriesLabel = new JLabel("Categories:");
+        categoriesArea = new JTextArea();
+        categoryScroller = new JScrollPane(categoriesArea);
+        categoryScroller.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
         addProjBut = new AddProjBut("Add Project",this);
         cancelBut = new CancelBut("Cancel",this);
@@ -79,12 +94,61 @@ public class AddProjDialog extends JDialog {
         projFilePanel = new JPanel(new FlowLayout());
         projFilePanel.setOpaque(true);
         projFilePanel.add(filePathLabel);
-        projFilePanel.add(projNameField);
+        projFilePanel.add(projPathField);
         projFilePanel.add(findBut);
         projFilePanel.add(applyBut);
 
         projEntriesPanel = new JPanel(new GridBagLayout());
+        //projEntriesPanel.setPreferredSize(new Dimension(600,400));
         projEntriesPanel.setOpaque(true);
+        GridBagConstraints entriesCon = new GridBagConstraints();
+        //entriesCon.fill = GridBagConstraints.HORIZONTAL;
+        entriesCon.gridx = 0;
+        entriesCon.gridy = 0;
+        entriesCon.ipady = 0;
+        projEntriesPanel.add(projNameLabel, entriesCon);
+        entriesCon.fill = GridBagConstraints.HORIZONTAL;
+        entriesCon.gridx = 2;
+        entriesCon.gridy = 0;
+        entriesCon.ipady = 0;
+        entriesCon.gridwidth = 2;
+        projEntriesPanel.add(projNameField, entriesCon);
+        //entriesCon.fill = GridBagConstraints.HORIZONTAL;
+        entriesCon.gridx = 0;
+        entriesCon.gridy = 1;
+        entriesCon.ipady = 0;
+        projEntriesPanel.add(ownerNameLabel, entriesCon);
+        entriesCon.fill = GridBagConstraints.HORIZONTAL;
+        entriesCon.gridx = 2;
+        entriesCon.gridy = 1;
+        entriesCon.ipady = 0;
+        entriesCon.gridwidth = 2;
+        projEntriesPanel.add(ownerNameField, entriesCon);
+
+        //entriesCon.fill = GridBagConstraints.HORIZONTAL;
+        entriesCon.gridx = 0;
+        entriesCon.gridy = 2;
+        entriesCon.ipady = 0;
+        projEntriesPanel.add(componentsLabel, entriesCon);
+        //entriesCon.fill = GridBagConstraints.HORIZONTAL;
+        entriesCon.gridx = 3;
+        entriesCon.gridy = 2;
+        entriesCon.ipady = 0;
+        projEntriesPanel.add(categoriesLabel, entriesCon);
+        entriesCon.fill = GridBagConstraints.BOTH;
+        entriesCon.weightx = 0.5;
+        entriesCon.weighty = 0.5;
+        entriesCon.gridwidth = 3;
+        entriesCon.gridx = 0;
+        entriesCon.gridy = 3;
+        projEntriesPanel.add(componentScroller, entriesCon);
+        entriesCon.fill = GridBagConstraints.BOTH;
+        entriesCon.weightx = 0.5;
+        entriesCon.weighty = 0.5;
+        entriesCon.gridwidth = 3;
+        entriesCon.gridx = 3;
+        entriesCon.gridy = 3;
+        projEntriesPanel.add(categoryScroller, entriesCon);
 
         projSubmitPanel = new JPanel(new FlowLayout());
         projSubmitPanel.setOpaque(true);
