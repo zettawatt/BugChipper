@@ -8,7 +8,7 @@ import com.db4o.cs.config.*;
 
 public class DAO {
     Mediator mdtr;
-    ObjectContainer con;
+    public ObjectContainer con;
     String dbURL;
     int dbPort;
 
@@ -20,6 +20,7 @@ public class DAO {
     }
 
     public boolean dbLogin (String user, String pass) {
+        mdtr.log.addData("Attempting to connect to database...");
         // Add SSL encryption for network traffic
         // FIXME: Need to add SSL certificates to java for this to work
         ClientConfiguration configuration = Db4oClientServer.newClientConfiguration();
@@ -27,7 +28,6 @@ public class DAO {
         con = null;
         try {
             con = Db4oClientServer.openClient(configuration, dbURL, dbPort, user, pass);
-            mdtr.log.addData("Attempting to connect to database...");
             mdtr.log.addData("Successful login with username "+user);
         } catch (Exception e) {
             mdtr.log.addData("Login failed with username "+user);

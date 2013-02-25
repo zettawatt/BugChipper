@@ -10,6 +10,7 @@ import java.nio.file.*;
 import java.util.*;
 import bugchipper.*;
 import bugchipper.database.*;
+import bugchipper.database.objects.*;
 import bugchipper.gui.eventhandlers.*;
 
 /**
@@ -29,6 +30,7 @@ public class AddProjDialog extends JDialog {
     FindProjBut findBut;
     ApplyBut applyBut;
     JScrollPane componentScroller, categoryScroller;
+
     final static Charset ENCODING = StandardCharsets.UTF_8;
 
     public AddProjDialog(Mediator inp_mdtr, DAO inp_dao) {
@@ -74,7 +76,47 @@ public class AddProjDialog extends JDialog {
     }
 
     void AddProj() {
-        // add project to database
+        if ((projNameField.getText().length() == 0) || (ownerNameField.getText().length() == 0)) {
+            JOptionPane.showMessageDialog(this,
+                                          "Must have the project name and owner name fields completed",
+                                          "Add Project Failure",
+                                          JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // Create a new project object
+        ProjectObj proj = new ProjectObj(projNameField.getText(), ownerNameField.getText());
+        
+        // Go through the components text area line by line, create new component objects, and add them to the project
+        String[] compLines = componentsArea.getText().split("\\n");
+        for (String compLine : compLines) {
+            compLine = compLine.replaceAll("\\s","");
+            ComponentObj comp = new ComponentObj(compLine);
+            proj.addComp(comp);
+        }
+        // Go through the categories text area line by line, create new category objects, and add them to the project
+        String[] catLines = categoriesArea.getText().split("\\n");
+        for (String catLine : catLines) {
+            catLine = catLine.replaceAll("\\s","");
+            String catKey  = catLine.replaceAll("^(.*)=(.*)$","$1");
+            String catVal  = catLine.replaceAll("^(.*)=(.*)$","$2");
+            CategoryObj cat = new CategoryObj(catKey, catVal);
+            proj.addCat(cat);
+        }
+
+        try {
+            dao.con.store(proj);
+            mdtr.log.addData("Adding new project to the database");
+            mdtr.log.addData("Project name: "+proj.getName());
+            mdtr.log.addData("Owner name  : "+proj.getOwner());
+        } catch (Exception e) {
+            mdtr.log.addData("Caught exception when adding new project: "+e);
+            JOptionPane.showMessageDialog(this,
+                                          "Failed to write new project to the datbase",
+                                          "Database write failure",
+                                          JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         this.dispose();
     }
 
@@ -82,8 +124,10 @@ public class AddProjDialog extends JDialog {
         this.dispose();
     }
 
+    /**
+     * Apply the contents of the input project file into the fields in the add project dialog window.
+     */
     void Apply() {
-        // Apply the contents of the project file to the fields
         Path path = Paths.get(projPathField.getText());
         try (Scanner scanner = new Scanner(path, ENCODING.name())) {
                 String line;
