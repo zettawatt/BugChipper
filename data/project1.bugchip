@@ -1,0 +1,17 @@
+[project]
+        name = project1
+[owner]
+        name = John Doe
+[components]
+        ram.v2
+        cpu.v4
+        eeprom.v1
+        timer.v2
+        counter.v3
+        test.v1
+        spi.v2
+[categories]
+        process = 65nm
+        group = 16bit
+        test = yes
+        comm = yes

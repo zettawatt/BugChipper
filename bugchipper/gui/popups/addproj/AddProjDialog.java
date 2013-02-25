@@ -4,6 +4,9 @@ import javax.swing.*;
 import javax.swing.filechooser.*;
 import java.awt.*;
 import java.io.*;
+import java.nio.*;
+import java.nio.charset.*;
+import java.nio.file.*;
 import java.util.*;
 import bugchipper.*;
 import bugchipper.database.*;
@@ -15,6 +18,7 @@ import bugchipper.gui.eventhandlers.*;
 public class AddProjDialog extends JDialog {
     Mediator mdtr;
     DAO dao;
+    File projFile;
     JTextField projPathField, projNameField, ownerNameField;
     JTextArea componentsArea, categoriesArea;
     JFileChooser projFileChooser;
@@ -25,6 +29,7 @@ public class AddProjDialog extends JDialog {
     FindProjBut findBut;
     ApplyBut applyBut;
     JScrollPane componentScroller, categoryScroller;
+    final static Charset ENCODING = StandardCharsets.UTF_8;
 
     public AddProjDialog(Mediator inp_mdtr, DAO inp_dao) {
         mdtr = inp_mdtr;
@@ -79,14 +84,74 @@ public class AddProjDialog extends JDialog {
 
     void Apply() {
         // Apply the contents of the project file to the fields
+        Path path = Paths.get(projPathField.getText());
+        try (Scanner scanner = new Scanner(path, ENCODING.name())) {
+                String line;
+                boolean isProject, isOwner, isComponents, isCategories;
+                isProject = false;
+                isOwner = false;
+                isComponents = false;
+                isCategories = false;
+
+                mdtr.log.addData("Read in project file "+projPathField.getText());
+                while (scanner.hasNextLine()) {
+                    line = scanner.nextLine();
+                    line = line.replaceAll("\\s","");
+                    if (line.matches("\\[project\\]")) {
+                        isProject = true;
+                        isOwner = false;
+                        isComponents = false;
+                        isCategories = false;
+                    } else if (line.matches("\\[owner\\]")) {
+                        isProject = false;
+                        isOwner = true;
+                        isComponents = false;
+                        isCategories = false;
+                    } else if (line.matches("\\[components\\]")) {
+                        isProject = false;
+                        isOwner = false;
+                        isComponents = true;
+                        isCategories = false;
+                    } else if (line.matches("\\[categories\\]")) {
+                        isProject = false;
+                        isOwner = false;
+                        isComponents = false;
+                        isCategories = true;
+                    } else if (line.length() > 0) {
+                        if (isProject) {
+                            if (line.matches("^name=(.*)")) {
+                                line = line.replaceAll("^name=(.*)", "$1");
+                                mdtr.log.addData("Project Name: "+line);
+                                projNameField.setText(line);
+                            }
+                        } else if (isOwner) {
+                            if (line.matches("^name=(.*)")) {
+                                line = line.replaceAll("^name=(.*)", "$1");
+                                mdtr.log.addData("Owner Name: "+line);
+                                ownerNameField.setText(line);
+                            }
+                        } else if (isComponents) {
+                            line = line.replaceAll("^(.*)$", "$1\n");
+                            mdtr.log.addData("Add Component: "+line);
+                            componentsArea.append(line);
+                        } else if (isCategories) {
+                            line = line.replaceAll("^(.*)$", "$1\n");
+                            mdtr.log.addData("Add Category: "+line);
+                            categoriesArea.append(line);
+                        }
+                    }
+                }
+            } catch (Exception e) {
+            mdtr.log.addData("Failed to read file "+projPathField.getText()+": "+e);
+        }
     }
 
     void Find() {
         projFileChooser = new JFileChooser();
         int returnVal = projFileChooser.showOpenDialog(AddProjDialog.this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File projFile = projFileChooser.getSelectedFile();
-            projNameField.setText(projFile.getAbsolutePath());
+            projFile = projFileChooser.getSelectedFile();
+            projPathField.setText(projFile.getAbsolutePath());
         }
     }
 
