@@ -76,16 +76,19 @@ public class AddProjDialog extends JDialog {
     }
 
     void AddProj() {
-        if ((projNameField.getText().length() == 0) || (ownerNameField.getText().length() == 0)) {
+        String newProjName, newOwnerName;
+        newProjName = projNameField.getText();
+        newOwnerName = ownerNameField.getText();
+        if ((newProjName.length() == 0) || (newOwnerName.length() == 0)) {
             JOptionPane.showMessageDialog(this,
                                           "Must have the project name and owner name fields completed",
                                           "Add Project Failure",
                                           JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         // Create a new project object
-        ProjectObj proj = new ProjectObj(projNameField.getText(), ownerNameField.getText());
+        ProjectObj proj = new ProjectObj(newProjName, newOwnerName);
         
         // Go through the components text area line by line, create new component objects, and add them to the project
         String[] compLines = componentsArea.getText().split("\\n");
@@ -106,6 +109,7 @@ public class AddProjDialog extends JDialog {
 
         try {
             dao.con.store(proj);
+            dao.con.commit();
             mdtr.log.addData("Adding new project to the database");
             mdtr.log.addData("Project name: "+proj.getName());
             mdtr.log.addData("Owner name  : "+proj.getOwner());

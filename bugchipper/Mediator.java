@@ -3,16 +3,23 @@ package bugchipper;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 import bugchipper.gui.eventhandlers.*;
 import bugchipper.gui.menubar.*;
 import bugchipper.gui.toolbar.*;
+import bugchipper.gui.tables.*;
 import bugchipper.gui.popups.*;
 import bugchipper.gui.popups.addproj.*;
 import bugchipper.gui.popups.login.*;
 import bugchipper.gui.*;
 import bugchipper.database.*;
+import bugchipper.database.objects.*;
+import com.db4o.*;
 
 public class Mediator {
+
+    // Main GUI
+    private MainGUI maingui;
 
     // Menu Items
     private AddProjMenuItem miAddProj;
@@ -47,7 +54,8 @@ public class Mediator {
         log = new BugChipLog(this);
     }
     
-    // Register menu items and toolbar buttons
+    // Register GUI items
+    public void registerMainGUI(MainGUI inp_maingui) {maingui = inp_maingui;}
     public void registerAddProjMenuItem (AddProjMenuItem inp_addprojmi) {miAddProj = inp_addprojmi;}
     public void registerAddBugMenuItem (AddBugMenuItem inp_addbugmi) {miAddBug = inp_addbugmi;}
     public void registerOpenProjMenuItem (OpenProjMenuItem inp_openprojmi) {miOpenProj = inp_openprojmi;}
@@ -116,6 +124,26 @@ public class Mediator {
 
     public void Login() {
         log.addData("Logging into Database!");
+        Vector<String> columnNames = new Vector<String>();
+        columnNames.add("Project");
+        columnNames.add("Open Issues");
+        columnNames.add("Date Modified");
+        columnNames.add("Process");
+        columnNames.add("Project Owner");
+        Vector< Vector<String>> data = new Vector<Vector<String>>();
+        java.util.List<ProjectObj> projects = dao.con.query(ProjectObj.class);
+        for (ProjectObj proj : projects) {
+            Vector<String> d = new Vector<String>();
+            d.add(proj.getName());
+            d.add("0");
+            d.add("2/25/2013");
+            d.add("65nm");
+            d.add(proj.getOwner());
+            data.add(d);
+        }
+
+        MainTable tb = new MainTable(columnNames, data, this);
+        maingui.scrollPane.setViewportView(tb);
         ls.updateStat(true);
         miLogin.setEnabled(false);
         miLogout.setEnabled(true);

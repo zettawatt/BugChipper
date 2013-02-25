@@ -11,9 +11,12 @@ import bugchipper.*;
 
 public class MainGUI {
     Mediator mdtr;
+    public JPanel contentPane;
+    public JScrollPane scrollPane;
 
     public MainGUI (Mediator inp_mdtr) {
         mdtr = inp_mdtr;
+        mdtr.registerMainGUI(this);
         /**
          * Create frame for application window
          */
@@ -32,7 +35,7 @@ public class MainGUI {
     // For any button that is highlighted, the Enter key will activate it
     UIManager.put("Button.defaultButtonFollowsFocus", Boolean.TRUE);
 
-    JPanel contentPane = new JPanel(new BorderLayout());
+    contentPane = new JPanel(new BorderLayout());
     contentPane.setOpaque(true);
 
     /**
@@ -47,14 +50,10 @@ public class MainGUI {
     /**
      * Setup Table Data
      */
-    Object [][] data = {
-        {"Project1", "6", "01/13/13", "65nm", "John Doe"},
-        {"Project2", "3", "02/06/13", "65nm", "John Doe"}
-    };
+    //Object [][] data = {};
 
-
-    MainTable table = new MainTable(columnNames, data, mdtr);
-    JScrollPane scrollPane = new JScrollPane(table);
+    //MainTable table = new MainTable(columnNames, data, mdtr);
+    scrollPane = new JScrollPane();
 
     /**
      * Add the menubar, toolbar, and contentpane

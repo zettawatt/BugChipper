@@ -3,6 +3,7 @@ package bugchipper.gui.tables;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 import bugchipper.gui.eventhandlers.*;
 import bugchipper.gui.*;
 import bugchipper.*;
@@ -10,7 +11,7 @@ import bugchipper.*;
 public class MainTable extends JTable {
     Mediator mdtr;
 
-    public MainTable (String [] columnNames, Object [][] data, Mediator inp_mdtr) {
+    public MainTable (Vector<String> columnNames, Vector<Vector<String>> data, Mediator inp_mdtr) {
         super(data, columnNames);
         mdtr = inp_mdtr;
 
