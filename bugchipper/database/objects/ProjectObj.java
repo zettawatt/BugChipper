@@ -60,4 +60,8 @@ public class ProjectObj {
     public String getOwner () {
         return ownerName;
     }
+
+    public Vector<BugObj> getBugs() {
+        return bugs;
+    }
 }

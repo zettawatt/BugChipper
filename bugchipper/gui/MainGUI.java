@@ -15,6 +15,7 @@ public class MainGUI {
     public JPanel contentPane;
     public JScrollPane scrollPane;
     public MainTable table;
+    public JTabbedPane mainTab;
 
     public MainGUI (Mediator inp_mdtr) {
         mdtr = inp_mdtr;
@@ -54,6 +55,9 @@ public class MainGUI {
     table = new MainTable(columnNames, data, mdtr);
     scrollPane = new JScrollPane(table);
 
+    mainTab = new JTabbedPane();
+    mainTab.addTab("All Proj", scrollPane);
+
     /**
      * Add the menubar, toolbar, and contentpane
      */
@@ -64,7 +68,7 @@ public class MainGUI {
 
     MainToolBar tb = new MainToolBar("BugChipper Toolbar", mdtr);
     contentPane.add(tb, BorderLayout.PAGE_START);
-    contentPane.add(scrollPane, BorderLayout.CENTER);
+    contentPane.add(mainTab, BorderLayout.CENTER);
     contentPane.add(ls, BorderLayout.PAGE_END);
     contentPane.setPreferredSize(new Dimension(500, 300));
     

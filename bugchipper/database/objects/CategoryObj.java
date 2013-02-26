@@ -32,4 +32,8 @@ public class CategoryObj {
     public int getNumBugs() {
         return numBugs;
     }
+
+    public Vector<BugObj> getBugs() {
+        return bugs;
+    }
 }

@@ -27,4 +27,8 @@ public class ComponentObj {
     public int getNumBugs() {
         return numBugs;
     }
+
+    public Vector<BugObj> getBugs() {
+        return bugs;
+    }
 }

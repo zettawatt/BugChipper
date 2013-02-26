@@ -1,15 +1,15 @@
 package bugchipper.database.objects;
 
 public class BugObj {
-    String bugName, bugDesc;
+    String bugTitle, bugDesc;
     
-    public BugObj (String inp_bugname, String inp_desc) {
-        bugName = inp_bugname;
+    public BugObj (String inp_bugtitle, String inp_desc) {
+        bugTitle = inp_bugtitle;
         bugDesc = inp_desc;
     }
 
-    public String getName () {
-        return bugName;
+    public String getTitle () {
+        return bugTitle;
     }
 
     public String getDesc () {

@@ -41,6 +41,8 @@ public class Mediator {
     private AddBugToolBut tbAddBug;
     private RefreshToolBut tbRefresh;
     private RefreshAllToolBut tbRefreshAll;
+    private ViewLogToolBut tbViewLog;
+    private AdminDBToolBut tbAdmin;
 
     // Database
     private DAO dao;
@@ -74,6 +76,8 @@ public class Mediator {
     public void registerAddBugToolBut (AddBugToolBut inp_addbugtb) {tbAddBug = inp_addbugtb;}
     public void registerRefreshToolBut (RefreshToolBut inp_refreshtb) {tbRefresh = inp_refreshtb;}
     public void registerRefreshAllToolBut (RefreshAllToolBut inp_refreshalltb) {tbRefreshAll = inp_refreshalltb;}
+    public void registerAdminDBToolBut (AdminDBToolBut inp_admintb) {tbAdmin = inp_admintb;}
+    public void registerViewLogToolBut (ViewLogToolBut inp_viewlogtb) {tbViewLog = inp_viewlogtb;}
 
     // Register database object
     public void registerDAO (DAO inp_dao) {dao = inp_dao;}
@@ -94,6 +98,7 @@ public class Mediator {
 
     public void AddBug() {
         log.addData("Added Bug!");
+        
     }
 
     public void OpenProj() {
