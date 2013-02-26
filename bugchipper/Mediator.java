@@ -114,10 +114,16 @@ public class Mediator {
 
     public void Refresh() {
         log.addData("Refreshing Current Tab!");
+        table = rebuildAllProjTable();
+        maingui.scrollPane.setViewportView(table);
+        maingui.scrollPane.revalidate();
     }
 
     public void RefreshAll() {
         log.addData("Refreshing All Tabs!");
+        table = rebuildAllProjTable();
+        maingui.scrollPane.setViewportView(table);
+        maingui.scrollPane.revalidate();
     }
 
     public void ViewLog() {
