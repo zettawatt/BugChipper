@@ -112,6 +112,7 @@ public class AddProjDialog extends JDialog {
             dao.con.commit();
             mdtr.log.addData("Adding new project to the database");
             mdtr.log.addData("Project name: "+proj.getName());
+            mdtr.log.addData("Mod Time    : "+proj.getModTime());
             mdtr.log.addData("Owner name  : "+proj.getOwner());
         } catch (Exception e) {
             mdtr.log.addData("Caught exception when adding new project: "+e);
@@ -121,6 +122,7 @@ public class AddProjDialog extends JDialog {
                                           JOptionPane.ERROR_MESSAGE);
             return;
         }
+        mdtr.AddProj();
         this.dispose();
     }
 

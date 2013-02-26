@@ -1,7 +1,7 @@
 package bugchipper;
 
 import javax.swing.*;
-import java.awt.*;
+//import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import bugchipper.gui.eventhandlers.*;
@@ -20,6 +20,7 @@ public class Mediator {
 
     // Main GUI
     private MainGUI maingui;
+    public MainTable table;
 
     // Menu Items
     private AddProjMenuItem miAddProj;
@@ -81,8 +82,14 @@ public class Mediator {
     // Register log
     public void registerBugChipLog (BugChipLog inp_log) {log = inp_log;}
 
-    public void AddProj() {
+    public void AddProjPrompt() {
         new AddProjDialog(this, dao);
+    }
+
+    public void AddProj() {
+        table = rebuildAllProjTable();
+        maingui.scrollPane.setViewportView(table);
+        maingui.scrollPane.revalidate();
     }
 
     public void AddBug() {
@@ -124,26 +131,9 @@ public class Mediator {
 
     public void Login() {
         log.addData("Logging into Database!");
-        Vector<String> columnNames = new Vector<String>();
-        columnNames.add("Project");
-        columnNames.add("Open Issues");
-        columnNames.add("Date Modified");
-        columnNames.add("Process");
-        columnNames.add("Project Owner");
-        Vector< Vector<String>> data = new Vector<Vector<String>>();
-        java.util.List<ProjectObj> projects = dao.con.query(ProjectObj.class);
-        for (ProjectObj proj : projects) {
-            Vector<String> d = new Vector<String>();
-            d.add(proj.getName());
-            d.add("0");
-            d.add("2/25/2013");
-            d.add("65nm");
-            d.add(proj.getOwner());
-            data.add(d);
-        }
-
-        MainTable tb = new MainTable(columnNames, data, this);
-        maingui.scrollPane.setViewportView(tb);
+        table = rebuildAllProjTable();
+        maingui.scrollPane.setViewportView(table);
+        maingui.scrollPane.revalidate();
         ls.updateStat(true);
         miLogin.setEnabled(false);
         miLogout.setEnabled(true);
@@ -161,5 +151,25 @@ public class Mediator {
 
     public void Admin() {
         log.addData("Administer Database!");
+    }
+
+    public MainTable rebuildAllProjTable () {
+        Vector<String> columnNames = new Vector<String>();
+        columnNames.add("Project");
+        columnNames.add("Open Issues");
+        columnNames.add("Date Modified");
+        columnNames.add("Project Owner");
+        Vector< Vector<String>> data = new Vector<Vector<String>>();
+        java.util.List<ProjectObj> projects = dao.con.query(ProjectObj.class);
+        for (ProjectObj proj : projects) {
+            Vector<String> d = new Vector<String>();
+            d.add(proj.getName());
+            d.add(Integer.toString(proj.getNumBugs()));
+            d.add(proj.getModTime());
+            d.add(proj.getOwner());
+            data.add(d);
+        }
+        MainTable newTable = new MainTable(columnNames, data, this);
+        return newTable;
     }
 }

@@ -12,7 +12,7 @@ public class AddProjToolBut extends JButton implements CommandInterface {
     ImageIcon addProj;
 
     public void processEvent() {
-        mdtr.AddProj();
+        mdtr.AddProjPrompt();
     }
 
     public AddProjToolBut (String tooltip, Mediator inp_mdtr) {

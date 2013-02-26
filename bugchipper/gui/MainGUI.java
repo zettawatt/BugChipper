@@ -2,6 +2,7 @@ package bugchipper.gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.*;
 import java.awt.event.*;
 import bugchipper.gui.eventhandlers.*;
 import bugchipper.gui.menubar.*;
@@ -13,6 +14,7 @@ public class MainGUI {
     Mediator mdtr;
     public JPanel contentPane;
     public JScrollPane scrollPane;
+    public MainTable table;
 
     public MainGUI (Mediator inp_mdtr) {
         mdtr = inp_mdtr;
@@ -41,19 +43,16 @@ public class MainGUI {
     /**
      * Initialize Column Header
      */
-    String [] columnNames = {"Project",
-                            "Open Issues",
-                            "Date Modified",
-                            "Process",
-                            "Project Lead"};
+    Vector<String> columnNames = new Vector<String>();
+    columnNames.add("Project");
+    columnNames.add("Open Issues");
+    columnNames.add("Date Modified");
+    columnNames.add("Project Lead");
 
-    /**
-     * Setup Table Data
-     */
-    //Object [][] data = {};
+    Vector<Vector<String>> data = new Vector<Vector<String>>();
 
-    //MainTable table = new MainTable(columnNames, data, mdtr);
-    scrollPane = new JScrollPane();
+    table = new MainTable(columnNames, data, mdtr);
+    scrollPane = new JScrollPane(table);
 
     /**
      * Add the menubar, toolbar, and contentpane

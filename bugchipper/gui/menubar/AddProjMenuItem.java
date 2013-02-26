@@ -11,7 +11,7 @@ public class AddProjMenuItem extends JMenuItem implements CommandInterface {
     Mediator mdtr;
 
     public void processEvent() {
-        mdtr.AddProj();
+        mdtr.AddProjPrompt();
     }
 
     public AddProjMenuItem (String name, Mediator inp_mdtr) {
