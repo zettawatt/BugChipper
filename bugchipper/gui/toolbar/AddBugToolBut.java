@@ -12,7 +12,7 @@ public class AddBugToolBut extends JButton implements CommandInterface {
     ImageIcon addBug;
 
     public void processEvent() {
-        mdtr.AddBug();
+        mdtr.AddBugPrompt();
     }
 
     public AddBugToolBut (String tooltip, Mediator inp_mdtr) {

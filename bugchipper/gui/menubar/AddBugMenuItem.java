@@ -11,7 +11,7 @@ public class AddBugMenuItem extends JMenuItem implements CommandInterface {
     Mediator mdtr;
 
     public void processEvent() {
-        mdtr.AddBug();
+        mdtr.AddBugPrompt();
     }
 
     public AddBugMenuItem (String name, Mediator inp_mdtr) {

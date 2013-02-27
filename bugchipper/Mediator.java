@@ -9,6 +9,7 @@ import bugchipper.gui.menubar.*;
 import bugchipper.gui.toolbar.*;
 import bugchipper.gui.tables.*;
 import bugchipper.gui.popups.*;
+import bugchipper.gui.popups.addbug.*;
 import bugchipper.gui.popups.addproj.*;
 import bugchipper.gui.popups.login.*;
 import bugchipper.gui.*;
@@ -96,9 +97,14 @@ public class Mediator {
         maingui.scrollPane.revalidate();
     }
 
+    public void AddBugPrompt() {
+        new AddBugDialog(this, dao);
+    }
+
     public void AddBug() {
-        log.addData("Added Bug!");
-        
+        table = rebuildAllProjTable();
+        maingui.scrollPane.setViewportView(table);
+        maingui.scrollPane.revalidate();
     }
 
     public void OpenProj() {
