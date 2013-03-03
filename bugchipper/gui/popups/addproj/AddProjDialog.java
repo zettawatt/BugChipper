@@ -87,35 +87,12 @@ public class AddProjDialog extends JDialog {
             return;
         }
 
-        // Create a new project object
-        ProjectObj proj = new ProjectObj(newProjName, newOwnerName);
-        
-        // Go through the components text area line by line, create new component objects, and add them to the project
         String[] compLines = componentsArea.getText().split("\\n");
-        for (String compLine : compLines) {
-            compLine = compLine.replaceAll("\\s","");
-            ComponentObj comp = new ComponentObj(compLine);
-            proj.addComp(comp);
-        }
-        // Go through the categories text area line by line, create new category objects, and add them to the project
         String[] catLines = categoriesArea.getText().split("\\n");
-        for (String catLine : catLines) {
-            catLine = catLine.replaceAll("\\s","");
-            String catKey  = catLine.replaceAll("^(.*)=(.*)$","$1");
-            String catVal  = catLine.replaceAll("^(.*)=(.*)$","$2");
-            CategoryObj cat = new CategoryObj(catKey, catVal);
-            proj.addCat(cat);
-        }
 
-        try {
-            dao.con.store(proj);
-            dao.con.commit();
-            mdtr.log.addData("Adding new project to the database");
-            mdtr.log.addData("Project name: "+proj.getName());
-            mdtr.log.addData("Mod Time    : "+proj.getModTime());
-            mdtr.log.addData("Owner name  : "+proj.getOwner());
-        } catch (Exception e) {
-            mdtr.log.addData("Caught exception when adding new project: "+e);
+        boolean addedProject = dao.addProj(newProjName, newOwnerName, compLines, catLines);
+
+        if (!addedProject) {
             JOptionPane.showMessageDialog(this,
                                           "Failed to write new project to the datbase",
                                           "Database write failure",

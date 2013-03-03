@@ -79,51 +79,15 @@ public class AddBugDialog extends JDialog {
                                           JOptionPane.ERROR_MESSAGE);
             return;
         }
-//
-//        // Create a new bug object
-//        BugObj proj = new BugObj(newTitle, newDesc, newOwnerName);
-//        
-//        // Go through the components text area line by line, create new component objects, and add them to the project
-//        String[] projLines = projectArea.getText().split("\\n");
-//        for (String projLine : projLines) {
-//            projLine = projLine.replaceAll("\\s","");
-//            ProjectObj proj = new ProjonentObj(projLine);
-//            proj.addProj(proj);
-//        }
-//
-//        // Go through the components text area line by line, create new component objects, and add them to the project
-//        String[] compLines = componentArea.getText().split("\\n");
-//        for (String compLine : compLines) {
-//            compLine = compLine.replaceAll("\\s","");
-//            ComponentObj comp = new ComponentObj(compLine);
-//            proj.addComp(comp);
-//        }
-//
-//        // Go through the categories text area line by line, create new category objects, and add them to the project
-//        String[] catLines = categoryArea.getText().split("\\n");
-//        for (String catLine : catLines) {
-//            catLine = catLine.replaceAll("\\s","");
-//            String catKey  = catLine.replaceAll("^(.*)=(.*)$","$1");
-//            String catVal  = catLine.replaceAll("^(.*)=(.*)$","$2");
-//            CategoryObj cat = new CategoryObj(catKey, catVal);
-//            proj.addCat(cat);
-//        }
-//
-//        try {
-//            dao.con.store(proj);
-//            dao.con.commit();
-//            mdtr.log.addData("Adding new bug to the database");
-//            mdtr.log.addData("Bug Title       : "+bug.getTitle());
-//            mdtr.log.addData("Bug Description : "+bug.getDesc());
-//            mdtr.log.addData("Owner name      : "+bug.getOwner());
-//        } catch (Exception e) {
-//            mdtr.log.addData("Caught exception when adding new project: "+e);
-//            JOptionPane.showMessageDialog(this,
-//                                          "Failed to write new project to the datbase",
-//                                          "Database write failure",
-//                                          JOptionPane.ERROR_MESSAGE);
-//            return;
-//        }
+
+        boolean addedBug = dao.addBug(newTitle, newOwnerName, newDesc);
+        if (!addedBug) {
+            JOptionPane.showMessageDialog(this,
+                                          "Failed to write new project to the datbase",
+                                          "Database write failure",
+                                          JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         mdtr.AddBug();
         this.dispose();
     }
