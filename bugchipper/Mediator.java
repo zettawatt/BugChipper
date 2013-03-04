@@ -1,7 +1,6 @@
 package bugchipper;
 
 import javax.swing.*;
-//import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import bugchipper.gui.eventhandlers.*;
@@ -137,6 +136,15 @@ public class Mediator {
         maingui.scrollPane.revalidate();
     }
 
+    public void openTab(String inp_colname, String inp_value) {
+        String columnName = inp_colname;
+        String cellValue  = inp_value;
+        JPanel test = new JPanel();
+        if (columnName == "Project") {
+            maingui.mainTab.addTab(cellValue, test);
+        }
+    }
+
     public void ViewLog() {
         log.addData("View Log!");
         LogDialog viewLog = new LogDialog(log);
@@ -186,7 +194,11 @@ public class Mediator {
             d.add(proj.getOwner());
             data.add(d);
         }
+        MainTableModel model = new MainTableModel(data, columnNames);
         MainTable newTable = new MainTable(columnNames, data, this);
+        mouseHandler mh = new mouseHandler();
+        newTable.addMouseListener(mh);
+        newTable.setModel(model);
         return newTable;
     }
 }

@@ -53,6 +53,8 @@ public class MainGUI {
     Vector<Vector<String>> data = new Vector<Vector<String>>();
 
     table = new MainTable(columnNames, data, mdtr);
+    mouseHandler mh = new mouseHandler();
+    table.addMouseListener(mh);
     scrollPane = new JScrollPane(table);
 
     mainTab = new JTabbedPane();
@@ -70,7 +72,7 @@ public class MainGUI {
     contentPane.add(tb, BorderLayout.PAGE_START);
     contentPane.add(mainTab, BorderLayout.CENTER);
     contentPane.add(ls, BorderLayout.PAGE_END);
-    contentPane.setPreferredSize(new Dimension(500, 300));
+    contentPane.setPreferredSize(new Dimension(800, 500));
     
 
     frame.setContentPane(contentPane);
