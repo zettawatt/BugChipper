@@ -141,7 +141,9 @@ public class Mediator {
         String cellValue  = inp_value;
         JPanel test = new JPanel();
         if (columnName == "Project") {
-            maingui.mainTab.addTab(cellValue, test);
+            maingui.mainTab.add(cellValue, test);
+            int i = maingui.mainTab.getTabCount();
+            maingui.initTab(i-1);
         }
     }
 

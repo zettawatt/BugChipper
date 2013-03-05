@@ -8,6 +8,7 @@ import bugchipper.gui.eventhandlers.*;
 import bugchipper.gui.menubar.*;
 import bugchipper.gui.toolbar.*;
 import bugchipper.gui.tables.*;
+import bugchipper.gui.tabs.*;
 import bugchipper.*;
 
 public class MainGUI {
@@ -58,7 +59,9 @@ public class MainGUI {
     scrollPane = new JScrollPane(table);
 
     mainTab = new JTabbedPane();
-    mainTab.addTab("All Proj", scrollPane);
+    mainTab.setTabLayoutPolicy(JTabbedPane.WRAP_TAB_LAYOUT);
+    mainTab.add("All Proj", scrollPane);
+    initTab(0);
 
     /**
      * Add the menubar, toolbar, and contentpane
@@ -81,4 +84,7 @@ public class MainGUI {
     frame.setVisible(true);
     }
 
+    public void initTab (int i) {
+        mainTab.setTabComponentAt (i, new TabPane(mainTab));
+    }
 }
