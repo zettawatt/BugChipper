@@ -19,19 +19,8 @@ public class QuitMenuItem extends JMenuItem implements CommandInterface {
         super(name);
         mdtr = inp_mdtr;
         mdtr.registerQuitMenuItem(this);
-        exitIcon = createImageIcon("../icons/16x16/exit.png", "Logged In");
+        exitIcon = new ImageIcon(BugChipperApp.class.getResource("gui/icons/16x16/exit.png"));
         this.setIcon(exitIcon);
-    }
-
-        protected static ImageIcon createImageIcon(String path,
-                                               String description) {
-        java.net.URL imgURL = QuitMenuItem.class.getResource(path);
-        if (imgURL != null) {
-            return new ImageIcon(imgURL, description);
-        } else {
-            System.err.println("Couldn't find file: " + path);
-            return null;
-        }
     }
 }
 

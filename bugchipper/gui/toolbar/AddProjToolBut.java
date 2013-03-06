@@ -16,22 +16,11 @@ public class AddProjToolBut extends JButton implements CommandInterface {
     }
 
     public AddProjToolBut (String tooltip, Mediator inp_mdtr) {
-        addProj = createImageIcon("../icons/16x16/project-add.png", "Add Project Icon");
+        addProj = new ImageIcon(BugChipperApp.class.getResource("gui/icons/16x16/project-add.png"));
         this.setIcon(addProj);
         this.setToolTipText(tooltip);
         mdtr = inp_mdtr;
         mdtr.registerAddProjToolBut(this);
-    }
-
-    protected static ImageIcon createImageIcon(String path,
-                                               String description) {
-        java.net.URL imgURL = AddProjToolBut.class.getResource(path);
-        if (imgURL != null) {
-            return new ImageIcon(imgURL, description);
-        } else {
-            System.err.println("Couldn't find file: " + path);
-            return null;
-        }
     }
 }
 

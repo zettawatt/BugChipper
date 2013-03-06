@@ -8,6 +8,12 @@ all:
 run:
 	java BugChipper
 
+jar:
+	jar cfm BugChipper.jar Manifest.txt bugchipper/ *.class db4o/
+
+runjar:
+	java -jar BugChipper.jar
+
 clean:
 	rm `find . -name '*.class'`
 

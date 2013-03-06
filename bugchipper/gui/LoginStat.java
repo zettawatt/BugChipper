@@ -9,8 +9,8 @@ public class LoginStat extends JLabel {
     ImageIcon loggedInIcon, notloggedInIcon;
 
     public LoginStat (Mediator inp_mdtr) {
-        loggedInIcon = createImageIcon("./icons/16x16/loginstat-logged_in.png", "Logged In");
-        notloggedInIcon = createImageIcon("./icons/16x16/loginstat-not_logged_in.png", "Not Logged In");
+        loggedInIcon = new ImageIcon(BugChipperApp.class.getResource("gui/icons/16x16/loginstat-logged_in.png"));
+        notloggedInIcon = new ImageIcon(BugChipperApp.class.getResource("gui/icons/16x16/loginstat-not_logged_in.png"));
         mdtr = inp_mdtr;
         mdtr.registerLoginStat(this);
         this.setText("Not Logged In. Read only access.");
@@ -24,17 +24,6 @@ public class LoginStat extends JLabel {
         } else {
             this.setText("Not Logged In. Read only access.");
             this.setIcon(notloggedInIcon);
-        }
-    }
-
-    protected static ImageIcon createImageIcon(String path,
-                                               String description) {
-        java.net.URL imgURL = LoginStat.class.getResource(path);
-        if (imgURL != null) {
-            return new ImageIcon(imgURL, description);
-        } else {
-            System.err.println("Couldn't find file: " + path);
-            return null;
         }
     }
 }
