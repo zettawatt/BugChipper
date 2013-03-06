@@ -19,7 +19,7 @@ import bcclient.gui.eventhandlers.*;
 public class AddProjDialog extends JDialog {
     Mediator mdtr;
     DAO dao;
-    File projFile;
+    File projFile = null;
     JTextField projPathField, projNameField, ownerNameField;
     JTextArea componentsArea, categoriesArea;
     JFileChooser projFileChooser;
@@ -174,11 +174,12 @@ public class AddProjDialog extends JDialog {
     }
 
     void Find() {
-        projFileChooser = new JFileChooser();
+        projFileChooser = new JFileChooser(mdtr.lastProjFile);
         int returnVal = projFileChooser.showOpenDialog(AddProjDialog.this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             projFile = projFileChooser.getSelectedFile();
             projPathField.setText(projFile.getAbsolutePath());
+            mdtr.setLastProjFile(projFile.getAbsolutePath());
         }
     }
 

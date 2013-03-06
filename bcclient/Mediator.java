@@ -52,6 +52,9 @@ public class Mediator {
     // Log
     public BugChipLog log;
 
+    // Other variables
+    public String lastProjFile = null;
+
     // Constructor
     public Mediator() {
         log = new BugChipLog(this);
@@ -178,6 +181,10 @@ public class Mediator {
 
     public void Admin() {
         log.addData("Administer Database!");
+    }
+
+    public void setLastProjFile (String inp_projfile) {
+        lastProjFile = inp_projfile;
     }
 
     public MainTable rebuildAllProjTable () {
