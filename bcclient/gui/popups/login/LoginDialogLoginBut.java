@@ -1,12 +1,12 @@
-package bugchipper.gui.popups.login;
+package bcclient.gui.popups.login;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import bugchipper.gui.eventhandlers.*;
-import bugchipper.gui.*;
-import bugchipper.database.*;
-import bugchipper.*;
+import bcclient.gui.eventhandlers.*;
+import bcclient.gui.*;
+import bcclient.database.*;
+import bcclient.*;
 
 public class LoginDialogLoginBut extends JButton implements CommandInterface {
     LoginDialog mdtr;

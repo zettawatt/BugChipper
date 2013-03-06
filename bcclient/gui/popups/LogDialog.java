@@ -1,8 +1,8 @@
-package bugchipper.gui.popups;
+package bcclient.gui.popups;
 
 import javax.swing.*;
 import java.awt.*;
-import bugchipper.*;
+import bcclient.*;
 
 /**
  * Display the Log Dialog from the View Menu

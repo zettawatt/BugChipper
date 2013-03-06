@@ -1,9 +1,9 @@
-package bugchipper.gui.tabs;
+package bcclient.gui.tabs;
 
 import javax.swing.*;
 import java.awt.*;
-import bugchipper.gui.eventhandlers.*;
-import bugchipper.*;
+import bcclient.gui.eventhandlers.*;
+import bcclient.*;
 
 public class TabButton extends JButton implements CommandInterface {
 

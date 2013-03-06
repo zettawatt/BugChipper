@@ -1,7 +1,7 @@
-package bugchipper.gui.popups.addproj;
+package bcclient.gui.popups.addproj;
 
 import javax.swing.*;
-import bugchipper.gui.eventhandlers.*;
+import bcclient.gui.eventhandlers.*;
 
 public class FindProjBut extends JButton implements CommandInterface {
     AddProjDialog mdtr;

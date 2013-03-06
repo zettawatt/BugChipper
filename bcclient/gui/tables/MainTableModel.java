@@ -1,4 +1,4 @@
-package bugchipper.gui.tables;
+package bcclient.gui.tables;
 
 import javax.swing.*;
 import javax.swing.table.*;

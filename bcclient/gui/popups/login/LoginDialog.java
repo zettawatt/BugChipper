@@ -1,11 +1,11 @@
-package bugchipper.gui.popups.login;
+package bcclient.gui.popups.login;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
-import bugchipper.*;
-import bugchipper.database.*;
-import bugchipper.gui.eventhandlers.*;
+import bcclient.*;
+import bcclient.database.*;
+import bcclient.gui.eventhandlers.*;
 
 /**
  * Display the a MySQL Login Dialog box

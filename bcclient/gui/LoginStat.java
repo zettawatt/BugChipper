@@ -1,8 +1,8 @@
-package bugchipper.gui;
+package bcclient.gui;
 
 import javax.swing.*;
 import java.awt.*;
-import bugchipper.*;
+import bcclient.*;
 
 public class LoginStat extends JLabel {
     Mediator mdtr;

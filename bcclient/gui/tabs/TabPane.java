@@ -1,9 +1,9 @@
-package bugchipper.gui.tabs;
+package bcclient.gui.tabs;
 
 import javax.swing.*;
 import java.awt.*;
-import bugchipper.gui.*;
-import bugchipper.gui.eventhandlers.*;
+import bcclient.gui.*;
+import bcclient.gui.eventhandlers.*;
 
 public class TabPane extends JPanel {
 

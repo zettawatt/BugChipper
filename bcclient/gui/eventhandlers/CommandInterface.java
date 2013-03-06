@@ -1,4 +1,4 @@
-package bugchipper.gui.eventhandlers;
+package bcclient.gui.eventhandlers;
 
 // Interface used for processing events
 public interface CommandInterface {

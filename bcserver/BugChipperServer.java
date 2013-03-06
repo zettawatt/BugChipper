@@ -1,3 +1,5 @@
+package bcserver;
+
 import com.db4o.*;
 import com.db4o.cs.*;
 import com.db4o.cs.ssl.*;

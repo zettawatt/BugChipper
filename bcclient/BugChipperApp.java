@@ -1,10 +1,10 @@
-package bugchipper;
+package bcclient;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import bugchipper.gui.*;
-import bugchipper.database.*;
+import bcclient.gui.*;
+import bcclient.database.*;
 
 public class BugChipperApp {
     {

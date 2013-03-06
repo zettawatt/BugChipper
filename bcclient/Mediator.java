@@ -1,19 +1,19 @@
-package bugchipper;
+package bcclient;
 
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.*;
-import bugchipper.gui.eventhandlers.*;
-import bugchipper.gui.menubar.*;
-import bugchipper.gui.toolbar.*;
-import bugchipper.gui.tables.*;
-import bugchipper.gui.popups.*;
-import bugchipper.gui.popups.addbug.*;
-import bugchipper.gui.popups.addproj.*;
-import bugchipper.gui.popups.login.*;
-import bugchipper.gui.*;
-import bugchipper.database.*;
-import bugchipper.database.objects.*;
+import bcclient.gui.eventhandlers.*;
+import bcclient.gui.menubar.*;
+import bcclient.gui.toolbar.*;
+import bcclient.gui.tables.*;
+import bcclient.gui.popups.*;
+import bcclient.gui.popups.addbug.*;
+import bcclient.gui.popups.addproj.*;
+import bcclient.gui.popups.login.*;
+import bcclient.gui.*;
+import bcclient.database.*;
+import bcclient.database.objects.*;
 import com.db4o.*;
 
 public class Mediator {

@@ -1,4 +1,4 @@
-package bugchipper.gui.popups;
+package bcclient.gui.popups;
 
 import javax.swing.*;
 import java.awt.*;

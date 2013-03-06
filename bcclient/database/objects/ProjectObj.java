@@ -1,4 +1,4 @@
-package bugchipper.database.objects;
+package bcclient.database.objects;
 
 import java.util.*;
 import java.text.*;

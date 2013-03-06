@@ -1,4 +1,4 @@
-package bugchipper;
+package bcclient;
 
 import javax.swing.*;
 import java.awt.*;

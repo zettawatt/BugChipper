@@ -1,12 +1,12 @@
-package bugchipper.gui.tables;
+package bcclient.gui.tables;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
-import bugchipper.gui.eventhandlers.*;
-import bugchipper.gui.*;
-import bugchipper.*;
+import bcclient.gui.eventhandlers.*;
+import bcclient.gui.*;
+import bcclient.*;
 
 public class MainTable extends JTable implements CommandInterface {
     Mediator mdtr;

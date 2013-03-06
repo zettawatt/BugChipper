@@ -1,13 +1,13 @@
-package bugchipper.gui.popups.addbug;
+package bcclient.gui.popups.addbug;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import java.util.*;
-import bugchipper.*;
-import bugchipper.database.*;
-import bugchipper.database.objects.*;
-import bugchipper.gui.eventhandlers.*;
+import bcclient.*;
+import bcclient.database.*;
+import bcclient.database.objects.*;
+import bcclient.gui.eventhandlers.*;
 
 /**
  * Display the AddBug Dialog box

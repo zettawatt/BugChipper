@@ -1,15 +1,15 @@
-package bugchipper.gui;
+package bcclient.gui;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 import java.awt.event.*;
-import bugchipper.gui.eventhandlers.*;
-import bugchipper.gui.menubar.*;
-import bugchipper.gui.toolbar.*;
-import bugchipper.gui.tables.*;
-import bugchipper.gui.tabs.*;
-import bugchipper.*;
+import bcclient.gui.eventhandlers.*;
+import bcclient.gui.menubar.*;
+import bcclient.gui.toolbar.*;
+import bcclient.gui.tables.*;
+import bcclient.gui.tabs.*;
+import bcclient.*;
 
 public class MainGUI {
     Mediator mdtr;

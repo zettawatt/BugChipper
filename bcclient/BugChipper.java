@@ -1,7 +1,8 @@
+package bcclient;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import bugchipper.*;
 
 public class BugChipper {
 

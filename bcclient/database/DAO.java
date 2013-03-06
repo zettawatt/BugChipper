@@ -1,7 +1,7 @@
-package bugchipper.database;
+package bcclient.database;
 
-import bugchipper.*;
-import bugchipper.database.objects.*;
+import bcclient.*;
+import bcclient.database.objects.*;
 import java.util.*;
 import com.db4o.*;
 import com.db4o.cs.*;

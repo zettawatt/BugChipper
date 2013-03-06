@@ -1,4 +1,4 @@
-package bugchipper.gui.popups.addproj;
+package bcclient.gui.popups.addproj;
 
 import javax.swing.*;
 import javax.swing.filechooser.*;
@@ -8,10 +8,10 @@ import java.nio.*;
 import java.nio.charset.*;
 import java.nio.file.*;
 import java.util.*;
-import bugchipper.*;
-import bugchipper.database.*;
-import bugchipper.database.objects.*;
-import bugchipper.gui.eventhandlers.*;
+import bcclient.*;
+import bcclient.database.*;
+import bcclient.database.objects.*;
+import bcclient.gui.eventhandlers.*;
 
 /**
  * Display the AddProj Dialog box

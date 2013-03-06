@@ -1,7 +1,7 @@
-package bugchipper.gui.popups.addbug;
+package bcclient.gui.popups.addbug;
 
 import javax.swing.*;
-import bugchipper.gui.eventhandlers.*;
+import bcclient.gui.eventhandlers.*;
 
 public class AddBugBut extends JButton implements CommandInterface {
     AddBugDialog mdtr;

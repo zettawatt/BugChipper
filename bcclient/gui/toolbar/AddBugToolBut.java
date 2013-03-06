@@ -1,11 +1,11 @@
-package bugchipper.gui.toolbar;
+package bcclient.gui.toolbar;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import bugchipper.gui.eventhandlers.*;
-import bugchipper.gui.*;
-import bugchipper.*;
+import bcclient.gui.eventhandlers.*;
+import bcclient.gui.*;
+import bcclient.*;
 
 public class AddBugToolBut extends JButton implements CommandInterface {
     Mediator mdtr;

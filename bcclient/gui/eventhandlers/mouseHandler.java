@@ -1,4 +1,4 @@
-package bugchipper.gui.eventhandlers;
+package bcclient.gui.eventhandlers;
 
 import javax.swing.*;
 import java.awt.*;

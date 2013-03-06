@@ -1,7 +1,7 @@
-package bugchipper.gui.popups.addbug;
+package bcclient.gui.popups.addbug;
 
 import javax.swing.*;
-import bugchipper.gui.eventhandlers.*;
+import bcclient.gui.eventhandlers.*;
 
 public class CancelBut extends JButton implements CommandInterface {
     AddBugDialog mdtr;
