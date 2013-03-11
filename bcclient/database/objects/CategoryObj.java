@@ -5,20 +5,22 @@ import java.util.*;
 public class CategoryObj {
     String catKey, catVal;
     BugObj bug;
-    int numBugs;
-    Vector<BugObj> bugs;
+    BugContainer bugCon;
+    int numBugs = 0;
+    Vector<BugContainer> bugs;
+
+    public CategoryObj() {}
     
     public CategoryObj (String inp_catkey, String inp_catval) {
         catKey = inp_catkey;
         catVal = inp_catval;
-        bugs = new Vector<BugObj>();
-        numBugs = bugs.size();
+        bugs = new Vector<BugContainer>();
     }
 
     public void addBug (BugObj inp_bug) {
         bug = inp_bug;
-        bugs.add(bug);
-        numBugs++;
+        bugCon = new BugContainer(bug);
+        bugs.add(bugCon);
     }
 
     public String getKey() {
@@ -30,10 +32,17 @@ public class CategoryObj {
     }
 
     public int getNumBugs() {
+        numBugs = 0;
+        for (BugContainer inp_bugcon : bugs) {
+            bugCon = inp_bugcon;
+            if(bugCon.isClosed()) {
+                numBugs++;
+            }
+        }
         return numBugs;
     }
 
-    public Vector<BugObj> getBugs() {
+    public Vector<BugContainer> getBugs() {
         return bugs;
     }
 }

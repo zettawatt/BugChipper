@@ -3,6 +3,8 @@ package bcclient.database.objects;
 public class BugObj {
     String bugTitle, bugDesc, bugOwner;
     int id;
+
+    public BugObj() {}
     
     public BugObj (String inp_bugtitle, String inp_desc, String inp_owner, int inp_id) {
         bugTitle = inp_bugtitle;

@@ -69,6 +69,7 @@ public class AddBugDialog extends JDialog {
 
     void AddBug() {
         String newOwnerName, newTitle, newDesc;
+        Vector<String> projBugs, comBugs, catBugs;
         newOwnerName = ownerField.getText();
         newTitle = titleField.getText();
         newDesc = descArea.getText();
@@ -80,7 +81,11 @@ public class AddBugDialog extends JDialog {
             return;
         }
 
-        boolean addedBug = dao.addBug(newTitle, newOwnerName, newDesc);
+        projBugs = mdtr.getLines(projectArea);
+        comBugs  = mdtr.getLines(componentArea);
+        catBugs  = mdtr.getLines(categoryArea);
+
+        boolean addedBug = dao.addBug(newTitle, newOwnerName, newDesc, projBugs, comBugs, catBugs);
         if (!addedBug) {
             JOptionPane.showMessageDialog(this,
                                           "Failed to write new project to the datbase",

@@ -8,12 +8,15 @@ public class ProjectObj {
     ComponentObj comp;
     CategoryObj cat;
     BugObj bug;
+    BugContainer bugCon;
     Date date;
-    int numBugs;
+    int numBugs = 0;
     SimpleDateFormat ft;
     Vector<ComponentObj> components;
     Vector<CategoryObj> categories;
-    Vector<BugObj> bugs;
+    Vector<BugContainer> bugs;
+
+    public ProjectObj () {}
     
     public ProjectObj (String inp_projname, String inp_ownername) {
         projName = inp_projname;
@@ -23,26 +26,23 @@ public class ProjectObj {
         time = ft.format(date);
         components = new Vector<ComponentObj>();
         categories = new Vector<CategoryObj>();
-        bugs = new Vector<BugObj>();
-        numBugs = bugs.size();
+        bugs = new Vector<BugContainer>();
     }
 
     public void addComp (ComponentObj inp_comp) {
         comp = inp_comp;
         components.add(comp);
-        numBugs += comp.getNumBugs();
     }
 
     public void addCat (CategoryObj inp_cat) {
         cat = inp_cat;
         categories.add(cat);
-        numBugs += cat.getNumBugs();
     }
 
     public void addBug (BugObj inp_bug) {
         bug = inp_bug;
-        bugs.add(bug);
-        numBugs++;
+        bugCon = new BugContainer(bug);
+        bugs.add(bugCon);
     }
 
     public String getName () {
@@ -50,6 +50,13 @@ public class ProjectObj {
     }
 
     public int getNumBugs () {
+        numBugs = 0;
+        for (BugContainer inp_bugcon : bugs) {
+            bugCon = inp_bugcon;
+            if(!bugCon.isClosed()) {
+                numBugs++;
+            }
+        }
         return numBugs;
     }
 
@@ -61,7 +68,7 @@ public class ProjectObj {
         return ownerName;
     }
 
-    public Vector<BugObj> getBugs() {
+    public Vector<BugContainer> getBugs() {
         return bugs;
     }
 }

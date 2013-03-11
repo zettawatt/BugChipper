@@ -87,8 +87,8 @@ public class AddProjDialog extends JDialog {
             return;
         }
 
-        String[] compLines = componentsArea.getText().split("\\n");
-        String[] catLines = categoriesArea.getText().split("\\n");
+        Vector<String> compLines = mdtr.getLines(componentsArea);
+        Vector<String> catLines = mdtr.getLines(categoriesArea);
 
         boolean addedProject = dao.addProj(newProjName, newOwnerName, compLines, catLines);
 
@@ -123,7 +123,7 @@ public class AddProjDialog extends JDialog {
                 mdtr.log.addData("Read in project file "+projPathField.getText());
                 while (scanner.hasNextLine()) {
                     line = scanner.nextLine();
-                    line = line.replaceAll("\\s","");
+                    line = line.replaceAll("\\s",""); //FIXME: need to just trim leading and trailing whitespace
                     if (line.matches("\\[project\\]")) {
                         isProject = true;
                         isOwner = false;

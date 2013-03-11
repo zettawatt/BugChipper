@@ -4,6 +4,7 @@ import bcclient.*;
 import bcclient.database.objects.*;
 import java.util.*;
 import com.db4o.*;
+import com.db4o.query.*;
 import com.db4o.cs.*;
 import com.db4o.cs.ssl.*;
 import com.db4o.cs.config.*;
@@ -27,6 +28,16 @@ public class DAO {
         // FIXME: Need to add SSL certificates to java for this to work
         ClientConfiguration configuration = Db4oClientServer.newClientConfiguration();
         //configuration.common().add(new SSLSupport());
+
+        // Update objects hierarchically. This has a performance penalty, but the
+        // graph of objects is very shallow, so it doesn't really matter that much
+        configuration.common().objectClass(ProjectObj.class).cascadeOnUpdate(true);
+        configuration.common().objectClass(ComponentObj.class).cascadeOnUpdate(true);
+        configuration.common().objectClass(CategoryObj.class).cascadeOnUpdate(true);
+        configuration.common().objectClass(BugContainer.class).cascadeOnUpdate(true);
+        
+        //configuration.common().exceptionsOnNotStorable(false);
+        //configuration.common().callConstructors(true);
         con = null;
         try {
             con = Db4oClientServer.openClient(configuration, dbURL, dbPort, user, pass);
@@ -48,18 +59,17 @@ public class DAO {
         }
     }
 
-    public boolean addProj (String inp_projname, String inp_ownername, String[] inp_comps, String[] inp_cats) {
+    public boolean addProj (String inp_projname, String inp_ownername, Vector<String> inp_comps, Vector<String> inp_cats) {
         String projName = inp_projname;
         String ownerName = inp_ownername;
-        String[] compLines = inp_comps;
-        String[] catLines = inp_cats;
+        Vector<String> compLines = inp_comps;
+        Vector<String> catLines = inp_cats;
 
                 // Create a new project object
         ProjectObj proj = new ProjectObj(projName, ownerName);
         
         // Go through the components text area line by line, create new component objects, and add them to the project
         for (String compLine : compLines) {
-            compLine = compLine.replaceAll("\\s","");
             ComponentObj comp = new ComponentObj(compLine);
             proj.addComp(comp);
         }
@@ -86,10 +96,14 @@ public class DAO {
         }
     }
 
-    public boolean addBug (String inp_title, String inp_owner, String inp_desc) {
+    public boolean addBug (String inp_title, String inp_owner, String inp_desc,
+                           Vector<String> inp_projbugs, Vector<String> inp_combugs, Vector<String> inp_catbugs) {
         String title = inp_title;
         String owner = inp_owner;
         String desc  = inp_desc;
+        Vector<String> projBugs = inp_projbugs;
+        Vector<String> comBugs = inp_combugs;
+        Vector<String> catBugs = inp_catbugs;
         BugIDCounter bugID = null;
 
         // Create unique ID number from the last count
@@ -130,11 +144,89 @@ public class DAO {
             mdtr.log.addData("Bug Description : "+bug.getDesc());
             mdtr.log.addData("Owner name      : "+bug.getOwner());
             mdtr.log.addData("Bug ID number   : "+Integer.toString(bug.getID()));
-            return true;
         } catch (Exception e) {
             mdtr.log.addData("Caught exception when adding new bug: "+e);
             return false;
         }
+
+        mdtr.log.addData("Adding component bugs: ");
+        for (String comBug : comBugs) {
+            mdtr.log.addData(comBug);
+        }
+
+//        // Add bug to all relevant components, categories, and projects
+//        if (comBugs.size() != 0) {
+//            List <ComponentObj> components = con.query(new Predicate<ComponentObj>() {
+//                    public boolean match(ComponentObj component) {
+//                        for (String comBug : comBugs) {
+//                            if (component.getName().equals(comBug)) {
+//                                return true;
+//                            }
+//                        }
+//                        return false;
+//                    }
+//                });
+//        
+//            for (ComponentObj component : components) {
+//                mdtr.log.addData("Adding component bug: "+component.getName());
+//                component.addBug(bug);
+//            }
+//        }
+        
+//        if (catBugs.size() != 0) {
+//            List <CategoryObj> categorys = con.query(new Predicate<CategoryObj>() {
+//                    public boolean match(CategoryObj cat) {
+//                        for (String catBug : catBugs) {
+//                            if (cat.getName() == catBug) {
+//                                return true;
+//                            }
+//                        }
+//                    }
+//                });
+//        
+//            for (CategoryObj category : categorys) {
+//                category.addBug(bug);
+//            }
+//        }
+        
+        if (projBugs.size() > 0) {
+            mdtr.log.addData("projBugs size: "+Integer.toString(projBugs.size()));
+            mdtr.log.addData("Adding project level bugs:");
+            List<ProjectObj> projects = con.query(new ProjBugsPredicate(projBugs));
+
+            for (ProjectObj project : projects) {
+                mdtr.log.addData(project.getName());
+                project.addBug(bug);
+                try {
+                    con.store(project);
+                    con.commit();
+                    mdtr.log.addData("Adding bug to the project"+project.getName());
+                } catch (Exception e) {
+                    mdtr.log.addData("Caught exception when adding new bug to project "+project.getName()+": "+e);
+                    return false;
+                }
+
+            }
+        }
+
+        return true;
+        
+    }
+}
+
+class ProjBugsPredicate extends Predicate<ProjectObj> {
+    Vector<String> projBugs;
+    public ProjBugsPredicate(Vector<String> inp_projbugs) {
+        projBugs = inp_projbugs;
+    }
+
+    public boolean match(ProjectObj project) {
+        for (String projBug : projBugs) {
+            if (project.getName().equals(projBug)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
 

@@ -210,4 +210,24 @@ public class Mediator {
         newTable.setModel(model);
         return newTable;
     }
+
+    public Vector<String> getLines(JTextArea inp_area) {
+        JTextArea area;
+        String[] lines;
+        area = inp_area;
+        Vector<String> lineVector;
+
+        lineVector = new Vector<String>();
+        
+        lines = area.getText().split("\\n");
+        
+        for (String line : lines) {
+            String trimmedLine = line.trim();
+            if (!trimmedLine.equals("")) {
+                lineVector.add(trimmedLine);
+            }
+        }
+
+        return lineVector;
+    }
 }
