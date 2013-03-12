@@ -17,7 +17,6 @@ public class LogDialog extends JDialog {
         this.setTitle("BugChipper Log");
         this.setSize(250,500);
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        this.setLocationRelativeTo(null);
 
         contentPane = new JPanel(new BorderLayout());
         contentPane.setOpaque(true);
@@ -30,6 +29,7 @@ public class LogDialog extends JDialog {
 
         this.setContentPane(contentPane);
         this.pack();
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 }

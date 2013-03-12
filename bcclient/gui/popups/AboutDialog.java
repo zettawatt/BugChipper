@@ -18,7 +18,6 @@ public class AboutDialog extends JDialog {
         this.setTitle("About BugChipper");
         this.setSize(250,400);
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        this.setLocationRelativeTo(null);
 
         logo = new JLabel(icon);
         prog = new JLabel("BugChipper 1.0");
@@ -32,6 +31,7 @@ public class AboutDialog extends JDialog {
         this.add(catchphrase);
 
         //this.pack();
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 

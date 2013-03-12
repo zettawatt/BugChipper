@@ -40,7 +40,6 @@ public class AddProjDialog extends JDialog {
         this.setTitle("Add Project to Database");
         this.setPreferredSize(new Dimension(700,400));
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        this.setLocationRelativeTo(null);
 
         UIManager.put("Button.defaultButtonFollowsFocus", Boolean.TRUE);
 
@@ -261,6 +260,7 @@ public class AddProjDialog extends JDialog {
         this.add(projSubmitPanel, BorderLayout.PAGE_END);
 
         this.pack();
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 }

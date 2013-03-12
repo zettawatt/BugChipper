@@ -25,7 +25,6 @@ public class LoginDialog extends JDialog {
         this.setTitle("Login to Database");
         this.setSize(250,150);
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        this.setLocationRelativeTo(null);
 
         UIManager.put("Button.defaultButtonFollowsFocus", Boolean.TRUE);
 
@@ -58,6 +57,7 @@ public class LoginDialog extends JDialog {
         
         this.setContentPane(contentPane);
         this.pack();
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 

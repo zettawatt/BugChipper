@@ -34,7 +34,6 @@ public class MainGUI {
      */
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setTitle("BugChipper");
-    frame.setLocationRelativeTo(null);
 
     // For any button that is highlighted, the Enter key will activate it
     UIManager.put("Button.defaultButtonFollowsFocus", Boolean.TRUE);
@@ -81,6 +80,7 @@ public class MainGUI {
     frame.setContentPane(contentPane);
     
     frame.pack();
+    frame.setLocationRelativeTo(null);
     frame.setVisible(true);
     }
 

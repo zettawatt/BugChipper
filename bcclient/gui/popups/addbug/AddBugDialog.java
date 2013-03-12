@@ -30,7 +30,6 @@ public class AddBugDialog extends JDialog {
         this.setTitle("Add Bug to Database");
         this.setPreferredSize(new Dimension(800,400));
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        this.setLocationRelativeTo(null);
 
         UIManager.put("Button.defaultButtonFollowsFocus", Boolean.TRUE);
 
@@ -197,6 +196,7 @@ public class AddBugDialog extends JDialog {
         this.add(buttonPanel, BorderLayout.PAGE_END);
 
         this.pack();
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 }

@@ -2,6 +2,7 @@ package bcclient.database;
 
 import bcclient.*;
 import bcclient.database.objects.*;
+import bcclient.database.predicates.*;
 import java.util.*;
 import com.db4o.*;
 import com.db4o.query.*;
@@ -211,22 +212,6 @@ public class DAO {
 
         return true;
         
-    }
-}
-
-class ProjBugsPredicate extends Predicate<ProjectObj> {
-    Vector<String> projBugs;
-    public ProjBugsPredicate(Vector<String> inp_projbugs) {
-        projBugs = inp_projbugs;
-    }
-
-    public boolean match(ProjectObj project) {
-        for (String projBug : projBugs) {
-            if (project.getName().equals(projBug)) {
-                return true;
-            }
-        }
-        return false;
     }
 }
 
