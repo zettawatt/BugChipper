@@ -70,6 +70,7 @@ public class DAO {
         ProjectObj proj = new ProjectObj(projName, ownerName);
         
         // Go through the components text area line by line, create new component objects, and add them to the project
+        // FIXME: need to prevent the creation of duplicate component objects by searching for existing ones
         for (String compLine : compLines) {
             ComponentObj comp = new ComponentObj(compLine);
             proj.addComp(comp);
@@ -150,29 +151,24 @@ public class DAO {
             return false;
         }
 
-        mdtr.log.addData("Adding component bugs: ");
-        for (String comBug : comBugs) {
-            mdtr.log.addData(comBug);
+        // Add bug to all relevant components, categories, and projects
+        if (comBugs.size() != 0) {
+            mdtr.log.addData("Adding component level bugs:");
+            List <ComponentObj> components = con.query(new ComAddBugsPredicate(comBugs));
+        
+            for (ComponentObj component : components) {
+                mdtr.log.addData("Adding component bug: "+component.getName());
+                component.addBug(bug);
+                try {
+                    con.store(component);
+                    con.commit();
+                    mdtr.log.addData("Adding bug to the component "+component.getName());
+                } catch (Exception e) {
+                    mdtr.log.addData("Caught exception when adding new bug to component "+component.getName()+": "+e);
+                    return false;
+                }
+            }
         }
-
-//        // Add bug to all relevant components, categories, and projects
-//        if (comBugs.size() != 0) {
-//            List <ComponentObj> components = con.query(new Predicate<ComponentObj>() {
-//                    public boolean match(ComponentObj component) {
-//                        for (String comBug : comBugs) {
-//                            if (component.getName().equals(comBug)) {
-//                                return true;
-//                            }
-//                        }
-//                        return false;
-//                    }
-//                });
-//        
-//            for (ComponentObj component : components) {
-//                mdtr.log.addData("Adding component bug: "+component.getName());
-//                component.addBug(bug);
-//            }
-//        }
         
 //        if (catBugs.size() != 0) {
 //            List <CategoryObj> categorys = con.query(new Predicate<CategoryObj>() {
@@ -191,22 +187,20 @@ public class DAO {
 //        }
         
         if (projBugs.size() > 0) {
-            mdtr.log.addData("projBugs size: "+Integer.toString(projBugs.size()));
             mdtr.log.addData("Adding project level bugs:");
-            List<ProjectObj> projects = con.query(new ProjBugsPredicate(projBugs));
+            List<ProjectObj> projects = con.query(new ProjAddBugsPredicate(projBugs));
 
             for (ProjectObj project : projects) {
-                mdtr.log.addData(project.getName());
+                mdtr.log.addData("Adding project bug: "+project.getName());
                 project.addBug(bug);
                 try {
                     con.store(project);
                     con.commit();
-                    mdtr.log.addData("Adding bug to the project"+project.getName());
+                    mdtr.log.addData("Adding bug to the project "+project.getName());
                 } catch (Exception e) {
                     mdtr.log.addData("Caught exception when adding new bug to project "+project.getName()+": "+e);
                     return false;
                 }
-
             }
         }
 
