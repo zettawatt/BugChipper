@@ -34,6 +34,17 @@ public class ProjectObj {
         components.add(comp);
     }
 
+    public boolean hasComp (String inp_comp) {
+        String testComp = inp_comp;
+        //System.out.println(testComp);
+        for (ComponentObj comp : components) {
+            if (comp.getName().equals(testComp)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void addCat (CategoryObj inp_cat) {
         cat = inp_cat;
         categories.add(cat);
@@ -43,6 +54,16 @@ public class ProjectObj {
         bug = inp_bug;
         bugCon = new BugContainer(bug);
         bugs.add(bugCon);
+    }
+
+    public boolean hasBug (BugObj inp_bug) {
+        BugObj testBug = inp_bug;
+        for (BugContainer bugContainer : bugs) {
+            if(bugContainer.bug.getID() == testBug.getID()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public String getName () {

@@ -135,7 +135,6 @@ public class DAO {
             bugID = new BugIDCounter();
             try {
                 con.store(bugID);
-                con.commit();
                 mdtr.log.addData("new bugID object :"+Integer.toString(bugID.getCurrentIDCount()));
             } catch (Exception e) {
                 mdtr.log.addData("Caught exception when adding new bug: "+e);
@@ -149,7 +148,6 @@ public class DAO {
         bugID.incCurrentIDCount();
         try {
             con.store(bugID);
-            con.commit();
         } catch (Exception e) {
             mdtr.log.addData("Caught exception when adding new bug: "+e);
             return false;
@@ -161,7 +159,6 @@ public class DAO {
 
         try {
             con.store(bug);
-            con.commit();
             mdtr.log.addData("Adding new bug to the database");
             mdtr.log.addData("Bug Title       : "+bug.getTitle());
             mdtr.log.addData("Bug Description : "+bug.getDesc());
@@ -176,16 +173,40 @@ public class DAO {
         if (comBugs.size() != 0) {
             mdtr.log.addData("Adding component level bugs:");
             List <ComponentObj> components = con.query(new ComVectInVectOutPredicate(comBugs));
+            Vector<String> compStrings = new Vector<String>();
         
             for (ComponentObj component : components) {
-                mdtr.log.addData("Adding component bug: "+component.getName());
                 component.addBug(bug);
+                compStrings.add(component.getName());
                 try {
                     con.store(component);
                     con.commit();
-                    mdtr.log.addData("Adding bug to the component "+component.getName());
+                    mdtr.log.addData("Adding bug #"
+                                     +Integer.toString(bug.getID())+" to the component "
+                                     +component.getName());
                 } catch (Exception e) {
-                    mdtr.log.addData("Caught exception when adding new bug to component "+component.getName()+": "+e);
+                    mdtr.log.addData("Caught exception when adding new bug to component "
+                                     +component.getName()+": "+e);
+                    return false;
+                }
+            }
+
+            // Check for any projects that have these components and add the bug to them as well
+            for ( String comTest : compStrings) {
+                mdtr.log.addData("added comp: "+comTest);
+            }
+            List <ProjectObj> projects = con.query(new ProjWithComListPredicate(compStrings));
+            for (ProjectObj project : projects) {
+                project.addBug(bug);
+                try {
+                    con.store(project);
+                    con.commit();
+                    mdtr.log.addData("Adding bug #"
+                                     +Integer.toString(bug.getID())+" to the project "
+                                     +project.getName());
+                } catch (Exception e) {
+                    mdtr.log.addData("Caught exception when adding new bug to the project "
+                                     +project.getName()+": "+e);
                     return false;
                 }
             }
@@ -211,18 +232,29 @@ public class DAO {
             mdtr.log.addData("Adding project level bugs:");
             List<ProjectObj> projects = con.query(new ProjVectInVectOutPredicate(projBugs));
 
+            // Add the bug to the project if it has not already been added by components or categories
             for (ProjectObj project : projects) {
-                mdtr.log.addData("Adding project bug: "+project.getName());
-                project.addBug(bug);
-                try {
-                    con.store(project);
-                    con.commit();
-                    mdtr.log.addData("Adding bug to the project "+project.getName());
-                } catch (Exception e) {
-                    mdtr.log.addData("Caught exception when adding new bug to project "+project.getName()+": "+e);
-                    return false;
+                if (!project.hasBug(bug)) {
+                    mdtr.log.addData("Adding project bug: "+project.getName());
+                    project.addBug(bug);
+                    try {
+                        con.store(project);
+                        mdtr.log.addData("Adding bug to the project "+project.getName());
+                    } catch (Exception e) {
+                        mdtr.log.addData("Caught exception when adding new bug to project "+project.getName()+": "+e);
+                        return false;
+                    }
                 }
             }
+        }
+
+        // Commit the changes to the database
+        try {
+            con.commit();
+        } catch (Exception e) {
+            mdtr.log.addData("Caught exception when commiting new bug #"
+                             +Integer.toString(bug.getID())+": "+e);
+            return false;
         }
 
         return true;
