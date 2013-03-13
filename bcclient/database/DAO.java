@@ -66,15 +66,36 @@ public class DAO {
         Vector<String> compLines = inp_comps;
         Vector<String> catLines = inp_cats;
 
-                // Create a new project object
+        // Create a new project object
         ProjectObj proj = new ProjectObj(projName, ownerName);
         
         // Go through the components text area line by line, create new component objects, and add them to the project
         // FIXME: need to prevent the creation of duplicate component objects by searching for existing ones
+
+        // Find components that are to be added that already exist in the project
+        // and remove these from the input vector
+        List<ComponentObj> components = con.query(new ComVectInVectOutPredicate(compLines));
+        for (ComponentObj comp : components) {
+            String compName = comp.getName();
+            for (int i=0; i<compLines.size(); i++) {
+                if (compName.equals(compLines.get(i))) {
+                    compLines.removeElementAt(i);
+                }
+            }
+            proj.addComp(comp);
+        }
+
+        // Create and add components that are new to this project
+        if (compLines.isEmpty()) {
+            mdtr.log.addData("No new components found");
+        } else {
         for (String compLine : compLines) {
+            mdtr.log.addData("Added new component to database : "+compLine);
             ComponentObj comp = new ComponentObj(compLine);
             proj.addComp(comp);
         }
+        }
+
         // Go through the categories text area line by line, create new category objects, and add them to the project
         for (String catLine : catLines) {
             catLine = catLine.replaceAll("\\s","");
@@ -154,7 +175,7 @@ public class DAO {
         // Add bug to all relevant components, categories, and projects
         if (comBugs.size() != 0) {
             mdtr.log.addData("Adding component level bugs:");
-            List <ComponentObj> components = con.query(new ComAddBugsPredicate(comBugs));
+            List <ComponentObj> components = con.query(new ComVectInVectOutPredicate(comBugs));
         
             for (ComponentObj component : components) {
                 mdtr.log.addData("Adding component bug: "+component.getName());
@@ -188,7 +209,7 @@ public class DAO {
         
         if (projBugs.size() > 0) {
             mdtr.log.addData("Adding project level bugs:");
-            List<ProjectObj> projects = con.query(new ProjAddBugsPredicate(projBugs));
+            List<ProjectObj> projects = con.query(new ProjVectInVectOutPredicate(projBugs));
 
             for (ProjectObj project : projects) {
                 mdtr.log.addData("Adding project bug: "+project.getName());

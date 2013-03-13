@@ -222,9 +222,10 @@ public class Mediator {
         lines = area.getText().split("\\n");
         
         for (String line : lines) {
-            String trimmedLine = line.trim();
-            if (!trimmedLine.equals("")) {
-                lineVector.add(trimmedLine);
+            line = line.replace("\n","").replace("\r","");
+            line = line.trim();
+            if (!line.equals("")) {
+                lineVector.add(line);
             }
         }
 

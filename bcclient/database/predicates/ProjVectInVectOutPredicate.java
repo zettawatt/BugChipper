@@ -4,9 +4,9 @@ import com.db4o.query.*;
 import bcclient.database.objects.*;
 import java.util.*;
 
-public class ProjAddBugsPredicate extends Predicate<ProjectObj> {
+public class ProjVectInVectOutPredicate extends Predicate<ProjectObj> {
     Vector<String> projBugs;
-    public ProjAddBugsPredicate(Vector<String> inp_projbugs) {
+    public ProjVectInVectOutPredicate(Vector<String> inp_projbugs) {
         projBugs = inp_projbugs;
     }
 

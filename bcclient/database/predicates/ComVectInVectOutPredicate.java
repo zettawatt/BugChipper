@@ -4,9 +4,9 @@ import com.db4o.query.*;
 import bcclient.database.objects.*;
 import java.util.*;
 
-public class ComAddBugsPredicate extends Predicate<ComponentObj> {
+public class ComVectInVectOutPredicate extends Predicate<ComponentObj> {
     Vector<String> comBugs;
-    public ComAddBugsPredicate(Vector<String> inp_combugs) {
+    public ComVectInVectOutPredicate(Vector<String> inp_combugs) {
         comBugs = inp_combugs;
     }
 

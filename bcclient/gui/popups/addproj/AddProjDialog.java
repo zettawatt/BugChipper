@@ -147,22 +147,18 @@ public class AddProjDialog extends JDialog {
                         if (isProject) {
                             if (line.matches("^name=(.*)")) {
                                 line = line.replaceAll("^name=(.*)", "$1");
-                                mdtr.log.addData("Project Name: "+line);
                                 projNameField.setText(line);
                             }
                         } else if (isOwner) {
                             if (line.matches("^name=(.*)")) {
                                 line = line.replaceAll("^name=(.*)", "$1");
-                                mdtr.log.addData("Owner Name: "+line);
                                 ownerNameField.setText(line);
                             }
                         } else if (isComponents) {
                             line = line.replaceAll("^(.*)$", "$1\n");
-                            mdtr.log.addData("Add Component: "+line);
                             componentsArea.append(line);
                         } else if (isCategories) {
                             line = line.replaceAll("^(.*)$", "$1\n");
-                            mdtr.log.addData("Add Category: "+line);
                             categoriesArea.append(line);
                         }
                     }
