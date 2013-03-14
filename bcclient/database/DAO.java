@@ -180,7 +180,6 @@ public class DAO {
                 compStrings.add(component.getName());
                 try {
                     con.store(component);
-                    con.commit();
                     mdtr.log.addData("Adding bug #"
                                      +Integer.toString(bug.getID())+" to the component "
                                      +component.getName());
@@ -192,15 +191,11 @@ public class DAO {
             }
 
             // Check for any projects that have these components and add the bug to them as well
-            for ( String comTest : compStrings) {
-                mdtr.log.addData("added comp: "+comTest);
-            }
-            List <ProjectObj> projects = con.query(new ProjWithComListPredicate(compStrings));
-            for (ProjectObj project : projects) {
+            List <ProjectObj> projs = con.query(new ProjWithComListPredicate(compStrings));
+            for (ProjectObj project : projs) {
                 project.addBug(bug);
                 try {
                     con.store(project);
-                    con.commit();
                     mdtr.log.addData("Adding bug #"
                                      +Integer.toString(bug.getID())+" to the project "
                                      +project.getName());

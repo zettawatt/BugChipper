@@ -4,6 +4,7 @@ import com.db4o.*;
 import com.db4o.cs.*;
 import com.db4o.cs.ssl.*;
 import com.db4o.cs.config.*;
+import bcclient.database.objects.*;
 
 public class BugChipperServer {
     private int dbPort = 1677;
