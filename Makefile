@@ -10,7 +10,7 @@ run:
 
 jar:
 	jar cfm BugChipper.jar Manifest_client.txt bcclient/ db4o/
-	jar cfm BugChipperServer.jar Manifest_server.txt bcserver/ db4o/
+	jar cfm BugChipperServer.jar Manifest_server.txt bcserver/ db4o/ bcclient/
 	chmod +x *.jar
 
 runjar:
