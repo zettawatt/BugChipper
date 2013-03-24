@@ -92,4 +92,12 @@ public class ProjectObj {
     public Vector<BugContainer> getBugs() {
         return bugs;
     }
+
+    public Vector<ComponentObj> getComponents() {
+        return components;
+    }
+
+    public Vector<CategoryObj> getCategories() {
+        return categories;
+    }
 }

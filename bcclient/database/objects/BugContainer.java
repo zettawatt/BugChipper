@@ -3,7 +3,7 @@ package bcclient.database.objects;
 import java.util.*;
 
 public class BugContainer {
-    BugObj bug;
+    public BugObj bug;
     boolean closed, viewed;
     String comment;
     

@@ -30,7 +30,7 @@ public class ComponentObj {
         numBugs = 0;
         for (BugContainer inp_bugcon : bugs) {
             bugCon = inp_bugcon;
-            if(bugCon.isClosed()) {
+            if(!bugCon.isClosed()) {
                 numBugs++;
             }
         }

@@ -60,6 +60,16 @@ public class DAO {
         }
     }
 
+    public ProjectObj getProj (String inp_projname) {
+        
+        String projName = inp_projname;
+
+        List<ProjectObj> proj = con.query(new ProjByNamePredicate(projName));
+
+        // There will be only one project object with the specified name, so this is OK
+        return proj.get(0);
+    }
+
     public boolean addProj (String inp_projname, String inp_ownername, Vector<String> inp_comps, Vector<String> inp_cats) {
         String projName = inp_projname;
         String ownerName = inp_ownername;

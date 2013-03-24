@@ -7,6 +7,7 @@ import bcclient.gui.eventhandlers.*;
 import bcclient.gui.menubar.*;
 import bcclient.gui.toolbar.*;
 import bcclient.gui.tables.*;
+import bcclient.gui.tabs.projecttab.*;
 import bcclient.gui.popups.*;
 import bcclient.gui.popups.addbug.*;
 import bcclient.gui.popups.addproj.*;
@@ -142,11 +143,15 @@ public class Mediator {
     public void openTab(String inp_colname, String inp_value) {
         String columnName = inp_colname;
         String cellValue  = inp_value;
-        JPanel test = new JPanel();
         if (columnName == "Project") {
-            maingui.mainTab.add(cellValue, test);
+            ProjectTabPanel projTab = new ProjectTabPanel(cellValue, this, dao);
+            maingui.mainTab.add(cellValue, projTab);
             int i = maingui.mainTab.getTabCount();
             maingui.initTab(i-1);
+        } else if (columnName == "Component Name") {
+            //FIXME: create a component tab
+        } else if (columnName == "ID #") {
+            //FIXME: create a bug container tab
         }
     }
 
